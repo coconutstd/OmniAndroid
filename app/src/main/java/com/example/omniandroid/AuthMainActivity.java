@@ -58,7 +58,7 @@ public class AuthMainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        Log.i(TAG, "호출!!!!!!!!!!!!!");
         // Add code here
         Intent activityIntent = getIntent();
         if (activityIntent.getData() != null &&
