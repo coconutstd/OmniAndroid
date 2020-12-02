@@ -15,7 +15,7 @@
     "CognitoUserPool": {
         "Default": {
             "PoolId": "ap-northeast-2_yhf3O0b2I",
-            "AppClientId": "26o0ps2dggqb6lvinkfvu0q61v",
+            "AppClientId": "7r6oj93glld6185hr1dj43l370",
             "Region": "ap-northeast-2"
         }
     },
@@ -23,7 +23,7 @@
         "Default": {
             "OAuth": {
                 "WebDomain": "omniandroid62de6f57-62de6f57-dev.auth.ap-northeast-2.amazoncognito.com",
-                "AppClientId": "26o0ps2dggqb6lvinkfvu0q61v",
+                "AppClientId": "7r6oj93glld6185hr1dj43l370",
                 "SignInRedirectURI": "omniandroid://callback/",
                 "SignOutRedirectURI": "omniandroid://signout/",
                 "Scopes": [
