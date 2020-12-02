@@ -63,9 +63,13 @@ public class AuthMainActivity extends AppCompatActivity {
         Intent activityIntent = getIntent();
         if (activityIntent.getData() != null &&
                 "omniandroid".equals(activityIntent.getData().getScheme())) {
+            Log.i(TAG, activityIntent.getData().getScheme());
             if (AWSMobileClient.getInstance().handleAuthResponse(activityIntent))
                 CommonAction.checkSession(this, true);
+        } else {
+            Log.i(TAG, "getData() is null");
         }
+
     }
 
     public void openLogin(View view) {
