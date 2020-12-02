@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "omniandroid4ab6f53e": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
