@@ -22,7 +22,7 @@
     "Auth": {
         "Default": {
             "OAuth": {
-                "WebDomain": "omniandroid62de6f57-62de6f57-dev.auth.ap-northeast-2.amazoncognito.com",
+                "WebDomain": "omniandroid6cec2e87-6cec2e87-dev.auth.ap-northeast-2.amazoncognito.com",
                 "AppClientId": "7r6oj93glld6185hr1dj43l370",
                 "SignInRedirectURI": "omniandroid://callback/",
                 "SignOutRedirectURI": "omniandroid://signout/",
