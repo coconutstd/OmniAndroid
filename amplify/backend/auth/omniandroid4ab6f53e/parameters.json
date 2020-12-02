@@ -53,7 +53,7 @@
     "serviceName": "Cognito",
     "dependsOn": [],
     "hostedUI": true,
-    "hostedUIDomainName": "omniandroidab8e68e0-ab8e68e0",
+    "hostedUIDomainName": "omniandroid62de6f57-62de6f57",
     "authProvidersUserPool": [
         "Facebook"
     ],

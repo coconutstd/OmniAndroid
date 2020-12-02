@@ -247,8 +247,7 @@ Resources:
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
       ClientName: omnian4ab6f53e_app_client
-      
-      GenerateSecret: !Ref userpoolClientGenerateSecret
+
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
     DependsOn: UserPool
