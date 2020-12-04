@@ -1,8 +1,17 @@
 package com.example.omniandroid;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -29,6 +38,7 @@ public class SignUpActivity extends FragmentActivity
     private static final String TAG = com.example.omniandroid.SignUpActivity.class.getSimpleName();
     private String userName, password;
     private Context context;
+    RadioButton teacher, student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,7 @@ public class SignUpActivity extends FragmentActivity
 
         setSignUpFragment();
         context = this;
+
     }
 
     private void setSignUpFragment() {
@@ -54,14 +65,17 @@ public class SignUpActivity extends FragmentActivity
     }
 
     @Override
-    public void signUp(String email, String password, String category) {
+    public void signUp(String email, String password, int identity) {
         userName = email;
         this.password = password;
 
         // Add code here
         final Map<String, String> attributes = new HashMap<>();
         attributes.put("email", email);
-        Log.d("hello", category);
+        if(identity == 0)
+            Log.d("teacher!", String.valueOf(identity));
+        else
+            Log.d("student!", String.valueOf(identity));
         AWSMobileClient.getInstance().signUp(userName, password, attributes, null, new Callback<SignUpResult>() {
             @Override
             public void onResult(final SignUpResult signUpResult) {

@@ -12,6 +12,7 @@ import com.amazonaws.mobile.client.UserStateDetails;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private final int SPLASH_DISPLAY_TIME = 5000;
     private final static String TAG = com.example.omniandroid.SplashActivity.class.getSimpleName();
 
     private Context context;

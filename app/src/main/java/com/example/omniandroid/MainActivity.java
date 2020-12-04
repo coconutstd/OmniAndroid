@@ -1,13 +1,11 @@
 package com.example.omniandroid;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +13,22 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.omniandroid.fragments.CalendarFragment;
+import com.example.omniandroid.fragments.MainFragment;
+import com.example.omniandroid.fragments.MonitoringFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSION_CAMERA = 1111;
     private static final String TAG = "tko-main";
     private RecyclerView recyclerView;
     //private PostAdapter mAdapter;
+    BottomNavigationView bottomNavigationView;
+
+    MainFragment fragment1;
+    MonitoringFragment fragment2;
+    CalendarFragment fragment3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +38,35 @@ public class MainActivity extends AppCompatActivity {
         CommonAction.checkSession(this, false);
         checkPermission();
 
-        Button settingBtn = findViewById(R.id.setting);
-        Button writeBtn = findViewById(R.id.writing);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        //프래그먼트 생성
+        fragment1 = new MainFragment();
+        fragment2 = new MonitoringFragment();
+        fragment3 = new CalendarFragment();
 
-        settingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(com.example.omniandroid.MainActivity.this, SettingActivity.class);
-                startActivity(intent);
-            }
-        });
+        //처음 띄워줄 뷰
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();
 
-        writeBtn.setOnClickListener(new View.OnClickListener() {
+        //아이콘 선택했을 때 원하는 프래그먼트 띄워지도록 리스너
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(com.example.omniandroid.MainActivity.this, WriteActivity.class);
-                startActivity(intent);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+               switch (item.getItemId()) {
+                   case R.id.tab1:{
+                       getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();
+                       return true;
+                   }
+                   case R.id.tab2:{
+                       getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2).commitAllowingStateLoss();
+                       return true;
+                   }
+                   case R.id.tab3:{
+                       getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment3).commitAllowingStateLoss();
+                       return true;
+                   }
+
+                   default:return false;
+               }
             }
         });
     }

@@ -33,8 +33,7 @@
     <string name="forget_pw">Forgot Password?</string>
     <string name="signup_email">Sign up with Email</string>
     <string name="enter_address">Enter Email Address</string>
-    <string name="enter_category">Enter Category</string>
-    <string name="confirm_pw">confirm password</string>요
+    <string name="confirm_pw">confirm password</string>
     <string name="user_check">confirm user information</string>
     <string name="code_confirm">Enter code</string>
     <string name="enter">Enter</string>
@@ -69,4 +68,6 @@
         <item>Finnish</item>
         <item>Turkish</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

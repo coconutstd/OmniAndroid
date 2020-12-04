@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#232f3e"
+    android:background="#ffffff"
     tools:context=".SplashActivity">
 
     <ImageView
@@ -18,5 +18,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ako_logo" />
+        app:srcCompat="@drawable/omni_logo_owl_2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
