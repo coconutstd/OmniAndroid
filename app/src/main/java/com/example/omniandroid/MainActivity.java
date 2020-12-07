@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button btnLogout = findViewById(R.id.btnLogout);
+
         CommonAction.checkSession(this, false);
         checkPermission();
 
@@ -74,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AWSMobileClient.getInstance().signOut();
+                CommonAction.openAuthMain(com.example.omniandroid.MainActivity.this);
+            }
+        });
     }
 
     private void checkPermission(){

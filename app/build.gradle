@@ -59,5 +59,4 @@ dependencies {
     implementation('com.amazonaws:aws-android-sdk-auth-userpools:2.8.+@aar') { transitive = true }
 // Sign in UI Library
     implementation('com.amazonaws:aws-android-sdk-auth-ui:2.8.+@aar') { transitive = true }
-
 }

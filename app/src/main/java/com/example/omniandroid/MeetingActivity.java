@@ -21,9 +21,7 @@ public class MeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
 
-        Button btnLogout = findViewById(R.id.btnLogout);
-
-        mWebView = (WebView)findViewById(R.id.webview_meeting);
+        mWebView = (WebView)this.findViewById(R.id.webview_meeting);
         mWebView.setWebChromeClient(new WebChromeClient());
         mWebSettings = mWebView.getSettings();
         mWebSettings.setJavaScriptEnabled(true);
@@ -32,12 +30,5 @@ public class MeetingActivity extends AppCompatActivity {
 //      앱 캐시 활성화 코드(비추천...)
 //      mWebView.getSettings().setAppCacheEnabled(true);
 
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AWSMobileClient.getInstance().signOut();
-                CommonAction.openAuthMain(com.example.omniandroid.MeetingActivity.this);
-            }
-        });
     }
 }
