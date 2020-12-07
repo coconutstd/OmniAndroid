@@ -11,4 +11,20 @@
         android:layout_height="match_parent"
         android:text="hello! main" />
 
+    <TextView
+        android:id="@+id/start_meeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="100dp"
+        android:text="학습 시작하려면 버튼을 클릭하세요" />
+
+    <Button
+        android:id="@+id/btnStartmeeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="20dp"
+        android:text="학습시작" />
+
 </FrameLayout>

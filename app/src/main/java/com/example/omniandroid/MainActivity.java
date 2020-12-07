@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
 import com.example.omniandroid.fragments.CalendarFragment;
 import com.example.omniandroid.fragments.MainFragment;
 import com.example.omniandroid.fragments.MonitoringFragment;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         checkPermission();
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
         //프래그먼트 생성
         fragment1 = new MainFragment();
         fragment2 = new MonitoringFragment();
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                }
             }
         });
+
     }
 
     private void checkPermission(){
