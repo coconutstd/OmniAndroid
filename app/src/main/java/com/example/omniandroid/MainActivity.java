@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     MonitoringFragment fragment2;
     CalendarFragment fragment3;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
