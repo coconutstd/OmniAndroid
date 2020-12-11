@@ -21,6 +21,8 @@ import com.example.omniandroid.fragments.MainFragment;
 import com.example.omniandroid.fragments.MonitoringFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSION_CAMERA = 1111;
@@ -32,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     MainFragment fragment1;
     MonitoringFragment fragment2;
     CalendarFragment fragment3;
+
+    private final String SUB_TOPIC = "토픽명";
+    private final String SERVER_URI = "tcp://192.168.0.125:1883";
+    private Mqtt mqttClient;
 
 
     @Override
