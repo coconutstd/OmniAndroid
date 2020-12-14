@@ -59,6 +59,9 @@ dependencies {
     implementation('com.amazonaws:aws-android-sdk-auth-userpools:2.8.+@aar') { transitive = true }
     // Sign in UI Library
     implementation('com.amazonaws:aws-android-sdk-auth-ui:2.8.+@aar') { transitive = true }
+    // Amplify
+    implementation 'com.amplifyframework:aws-api:1.6.4'
+    implementation 'com.amplifyframework:aws-datastore:1.6.4'
 
     // Android mqtt
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'

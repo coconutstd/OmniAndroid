@@ -7,33 +7,21 @@
     "CredentialsProvider": {
         "CognitoIdentity": {
             "Default": {
-                "PoolId": "ap-northeast-2:18d98211-358a-4f6c-8da3-afa71c98f6b3",
+                "PoolId": "ap-northeast-2:62e968ae-f91f-4a7b-bed6-0ba7ef2c179d",
                 "Region": "ap-northeast-2"
             }
         }
     },
     "CognitoUserPool": {
         "Default": {
-            "PoolId": "ap-northeast-2_yhf3O0b2I",
-            "AppClientId": "7r6oj93glld6185hr1dj43l370",
+            "PoolId": "ap-northeast-2_21OIRcb1Q",
+            "AppClientId": "7nd1p8bpv7in9654mmi20umq1n",
+            "AppClientSecret": "b2g24u607i73eh6qn2fqfp924njbs6sa0c525b6i2eatlnla6gd",
             "Region": "ap-northeast-2"
         }
     },
     "Auth": {
         "Default": {
-            "OAuth": {
-                "WebDomain": "omniandroid6cec2e87-6cec2e87-dev.auth.ap-northeast-2.amazoncognito.com",
-                "AppClientId": "7r6oj93glld6185hr1dj43l370",
-                "SignInRedirectURI": "omniandroid://callback/",
-                "SignOutRedirectURI": "omniandroid://signout/",
-                "Scopes": [
-                    "phone",
-                    "email",
-                    "openid",
-                    "profile",
-                    "aws.cognito.signin.user.admin"
-                ]
-            },
             "authenticationFlowType": "USER_SRP_AUTH"
         }
     }

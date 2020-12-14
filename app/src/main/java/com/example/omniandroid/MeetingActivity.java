@@ -44,7 +44,7 @@ public class MeetingActivity extends AppCompatActivity {
         mWebSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); // 컨텐츠 사이즈 맞추기
         mWebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); // 브라우저 캐시 허용 여부
         mWebSettings.setDomStorageEnabled(true); // 로컬저장소 허용 여부
-        mWebView.loadUrl("https://main.d2va81juaem8l3.amplifyapp.com/videochat");
+        mWebView.loadUrl("https://main.d2ajsje5ljp5i.amplifyapp.com/videochat");
 
 //      앱 캐시 활성화 코드(비추천...)
 //      mWebView.getSettings().setAppCacheEnabled(true);
