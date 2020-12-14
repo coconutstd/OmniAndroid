@@ -1,6 +1,6 @@
 {
     "identityPoolName": "omniandroid4ab6f53e_identitypool_4ab6f53e",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "omnian4ab6f53e",
     "userPoolName": "omniandroid4ab6f53e_userpool_4ab6f53e",
     "autoVerifiedAttributes": [

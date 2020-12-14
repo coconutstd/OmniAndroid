@@ -145,14 +145,13 @@ Parameters:
     Type: String
   
             
-  hostedUIProviderCreds:
-    Type: String
-  
-            
   oAuthMetadata:
     Type: String
   
             
+  hostedUIProviderCreds:
+    Type: String
+  
             
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
@@ -247,6 +246,8 @@ Resources:
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
       ClientName: omnian4ab6f53e_app_client
+      
+      GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
     DependsOn: UserPool
@@ -774,6 +775,8 @@ Outputs :
   AppClientID:
     Value: !Ref 'UserPoolClient'
     Description: The user pool app client id
+  AppClientSecret:
+    Value: !GetAtt UserPoolClientInputs.appSecret
   
    
    
