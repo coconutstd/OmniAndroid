@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-omniandroid-dev-141652-authRole",
+      "UnauthRoleArn": "arn:aws:iam::221545953602:role/amplify-omniandroid-dev-141652-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::221545953602:role/amplify-omniandroid-dev-141652-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-omniandroid-dev-141652-deployment",
+      "UnauthRoleName": "amplify-omniandroid-dev-141652-unauthRole",
+      "StackName": "amplify-omniandroid-dev-141652",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:221545953602:stack/amplify-omniandroid-dev-141652/959ad5e0-3dcb-11eb-9f04-0af0dcf9c1ec",
+      "AmplifyAppId": "d1wyitpmj1btq"
+    },
+    "categories": {
+      "auth": {
+        "omniandroid0ef090a1": {
+          "userPoolId": "ap-northeast-2_21OIRcb1Q",
+          "userPoolName": "videochatsolution320903db_userpool_320903db-dev",
+          "webClientId": "45e7sn56ntu9blfs8gf6ianf1l",
+          "nativeClientId": "7nd1p8bpv7in9654mmi20umq1n",
+          "identityPoolId": "ap-northeast-2:62e968ae-f91f-4a7b-bed6-0ba7ef2c179d",
+          "identityPoolName": "videochatsolution320903db_identitypool_320903db__dev",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::221545953602:role/amplify-videochatsolution-dev-141403-authRole",
+          "authRoleName": "amplify-videochatsolution-dev-141403-authRole",
+          "unauthRoleArn": "arn:aws:iam::221545953602:role/amplify-videochatsolution-dev-141403-unauthRole",
+          "unauthRoleName": "amplify-videochatsolution-dev-141403-unauthRole"
+        }
+      }
+    }
+  }
+}
