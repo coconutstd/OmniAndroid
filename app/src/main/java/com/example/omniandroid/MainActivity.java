@@ -1,6 +1,7 @@
 package com.example.omniandroid;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,10 +36,6 @@ public class MainActivity extends AppCompatActivity {
     MonitoringFragment fragment2;
     CalendarFragment fragment3;
 
-    private final String SUB_TOPIC = "토픽명";
-    private final String SERVER_URI = "tcp://192.168.0.125:1883";
-    private Mqtt mqttClient;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
+        Intent intent = getIntent();
+        String userId = intent.getStringExtra("user_id");
+
         //프래그먼트 생성
         fragment1 = new MainFragment();
         fragment2 = new MonitoringFragment();
         fragment3 = new CalendarFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("user_Id", "user_id");
+        fragment3.setArguments(bundle);
 
         //처음 띄워줄 뷰
         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();

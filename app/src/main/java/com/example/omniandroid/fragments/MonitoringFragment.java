@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.amazonaws.auth.CognitoCredentialsProvider;
+import com.amazonaws.regions.Regions;
 import com.example.omniandroid.Mqtt;
 import com.example.omniandroid.R;
 
@@ -16,12 +18,15 @@ import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-
 public class MonitoringFragment extends Fragment {
 
     private final String SUB_TOPIC = "토픽명";
     private final String SERVER_URI = "tcp://192.168.0.125:1883";
     private Mqtt mqttClient;
+    CognitoCredentialsProvider credentials = new CognitoCredentialsProvider(
+            "ap-northeast-2:96bceff2-c9b2-4ac0-9712-bd71504708e8",
+            Regions.AP_NORTHEAST_2
+    );
 
     public MonitoringFragment() {
         // Required empty public constructor

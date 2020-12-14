@@ -8,15 +8,15 @@
         android:icon="@drawable/home"
         android:enabled="true"
         android:checked="true"
-        android:title="메인" />
+        android:title="HOME" />
     <item android:id="@+id/tab2"
         app:showAsAction="always"
         android:icon="@drawable/research"
-        android:enabled="true" android:title="모니터링"/>
+        android:enabled="true" android:title="MONITORING"/>
     <item android:id="@+id/tab3"
         app:showAsAction="always"
         android:icon="@drawable/calendar"
         android:enabled="true"
-        android:title="캘린더"/>
+        android:title="KEYWORD CALENDAR"/>
 
 </menu>

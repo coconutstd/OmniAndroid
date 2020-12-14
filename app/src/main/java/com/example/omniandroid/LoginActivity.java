@@ -1,6 +1,8 @@
 package com.example.omniandroid;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,7 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
 import com.amazonaws.mobile.client.results.SignInResult;
+import com.example.omniandroid.fragments.CalendarFragment;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -54,6 +57,12 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         validator.setValidationListener(this);
 
         context = this;
+
+        String userId = etEmail.getText().toString();
+
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.putExtra("user_id", userId);
+        startActivity(intent);
     }
 
     @Override
