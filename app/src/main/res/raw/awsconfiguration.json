@@ -24,10 +24,5 @@
         "Default": {
             "authenticationFlowType": "USER_SRP_AUTH"
         }
-    },
-    "DynamoDBObjectMapper": {
-        "Default": {
-            "Region": "ap-northeast-2"
-        }
     }
 }
