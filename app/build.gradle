@@ -55,16 +55,16 @@ dependencies {
     // Mobile Client for initializing the SDK
     implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.16.0'
     implementation 'com.amazonaws:aws-android-sdk-cognitoauth:2.16.0'
-// Cognito UserPools for SignIn
+    // Cognito UserPools for SignIn
     implementation('com.amazonaws:aws-android-sdk-auth-userpools:2.8.+@aar') { transitive = true }
-// Sign in UI Library
+    // Sign in UI Library
     implementation('com.amazonaws:aws-android-sdk-auth-ui:2.8.+@aar') { transitive = true }
     // Amplify
     implementation 'com.amplifyframework:aws-api:1.6.4'
     implementation 'com.amplifyframework:aws-datastore:1.6.4'
 
-    // dynamodb
-    implementation 'com.amazonaws:aws-android-sdk-core:2.6.*'
-    implementation 'com.amazonaws:aws-android-sdk-ddb:2.6.*'
-    implementation 'com.amazonaws:aws-android-sdk-ddb-document:2.6.8'
+    // Android mqtt
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
 }
