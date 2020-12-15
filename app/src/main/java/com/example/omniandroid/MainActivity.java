@@ -22,7 +22,6 @@ import com.example.omniandroid.fragments.MainFragment;
 import com.example.omniandroid.fragments.MonitoringFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MainActivity extends AppCompatActivity {
 

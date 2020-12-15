@@ -14,6 +14,17 @@ import com.amazonaws.mobile.client.Callback;
 import com.amazonaws.mobile.client.HostedUIOptions;
 import com.amazonaws.mobile.client.SignInUIOptions;
 import com.amazonaws.mobile.client.UserStateDetails;
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.rest.RestOperation;
+import com.amplifyframework.api.rest.RestOptions;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.core.Amplify;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthMainActivity extends AppCompatActivity {
 
@@ -27,6 +38,50 @@ public class AuthMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth_main);
 
         context = this;
+//        try{
+////            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+////            Amplify.addPlugin(new AWSApiPlugin());
+////            Amplify.configure(getApplicationContext());
+//            Log.i(TAG, "Initialized Amplify");
+//            RestOptions options = RestOptions.builder()
+//                    .addPath("/sensor")
+//                    .build();
+//
+//            Amplify.API.get(options,
+//                    restResponse -> Log.i(TAG, "GET success: " + restResponse.getData()),
+//                    apiFailure -> Log.e("MyAmplifyApp", "GET failed.", apiFailure)
+//                    );
+//        } catch (AmplifyException error) {
+//            Log.e(TAG, "Could not initialize Amplify", error);
+//        }
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://4cxysyupk7.execute-api.ap-northeast-2.amazonaws.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SensorService service1 = retrofit.create(SensorService.class);
+
+        Call<SensorResult> call = service1.getSensors("sensor");
+
+        call.enqueue(new retrofit2.Callback<SensorResult>() {
+            @Override
+            public void onResponse(Call<SensorResult> call, Response<SensorResult> response) {
+                if(response.isSuccessful()){
+                    SensorResult result = response.body();
+                    Log.d(TAG, "onResponse: 성공, 결과\n"+ response.body());
+                    Log.d(TAG, "onResponse: 성공, 결과\n"+ result.toString());
+                } else {
+                    Log.d(TAG, "onResponse: 실패");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SensorResult> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
 
         CommonAction.checkSession(this, true);
     }

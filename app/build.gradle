@@ -25,6 +25,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -51,20 +52,38 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+
     implementation 'com.android.support:design:30.0.0'
     // Mobile Client for initializing the SDK
     implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.16.0'
-    implementation 'com.amazonaws:aws-android-sdk-cognitoauth:2.16.0'
+//    implementation 'com.amazonaws:aws-android-sdk-cognitoauth:2.16.0'
 // Cognito UserPools for SignIn
     implementation('com.amazonaws:aws-android-sdk-auth-userpools:2.8.+@aar') { transitive = true }
 // Sign in UI Library
     implementation('com.amazonaws:aws-android-sdk-auth-ui:2.8.+@aar') { transitive = true }
+
+    // Amplify core dependency
+    implementation 'com.amplifyframework:core:1.6.4'
     // Amplify
     implementation 'com.amplifyframework:aws-api:1.6.4'
     implementation 'com.amplifyframework:aws-datastore:1.6.4'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.6.4'
+    // Support for Java 8 features
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
 
     // dynamodb
     implementation 'com.amazonaws:aws-android-sdk-core:2.6.*'
     implementation 'com.amazonaws:aws-android-sdk-ddb:2.6.*'
     implementation 'com.amazonaws:aws-android-sdk-ddb-document:2.6.8'
+
+
+    // Retrofit 라이브러리
+    implementation 'com.squareup.retrofit2:retrofit:2.6.4'
+
+    // Gson 변환기 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
+
+    // Scalars 변환기 라이브러리
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.4'
 }
