@@ -77,7 +77,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-omniandroid-dev-141652-deployment",
-          "S3Key": "amplify-builds/sensorTest-7257544a69714372562f-build.zip"
+          "S3Key": "amplify-builds/sensorTest-7a5a323371412b416668-build.zip"
         }
       }
     },

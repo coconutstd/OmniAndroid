@@ -55,33 +55,6 @@ public class AuthMainActivity extends AppCompatActivity {
 //            Log.e(TAG, "Could not initialize Amplify", error);
 //        }
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://4cxysyupk7.execute-api.ap-northeast-2.amazonaws.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        SensorService service1 = retrofit.create(SensorService.class);
-
-        Call<SensorResult> call = service1.getSensors("sensor");
-
-        call.enqueue(new retrofit2.Callback<SensorResult>() {
-            @Override
-            public void onResponse(Call<SensorResult> call, Response<SensorResult> response) {
-                if(response.isSuccessful()){
-                    SensorResult result = response.body();
-                    Log.d(TAG, "onResponse: 성공, 결과\n"+ response.body());
-                    Log.d(TAG, "onResponse: 성공, 결과\n"+ result.toString());
-                } else {
-                    Log.d(TAG, "onResponse: 실패");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SensorResult> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-            }
-        });
-
 
         CommonAction.checkSession(this, true);
     }

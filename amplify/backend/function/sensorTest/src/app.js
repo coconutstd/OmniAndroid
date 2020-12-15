@@ -65,7 +65,7 @@ app.get(path, function(request, response) {
     if (error) {
       response.json({ statusCode: 500, error: error.message })
     } else {
-      response.json({ statusCode: 200, url: request.url, body: JSON.stringify(result.Items)})
+      response.json(result.Items)
     }
   })
 });
