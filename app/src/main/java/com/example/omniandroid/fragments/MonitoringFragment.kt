@@ -22,6 +22,8 @@ class MonitoringFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val adapter = CustomAdapter()
+
+        // 이 부분만 좀 다름!
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(getContext())
 
