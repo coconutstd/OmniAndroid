@@ -70,6 +70,7 @@ dependencies {
     // Amplify
     implementation 'com.amplifyframework:aws-api:1.6.4'
     implementation 'com.amplifyframework:aws-datastore:1.6.4'
+    implementation 'com.amplifyframework:aws-predictions:1.6.4'
     implementation 'com.amplifyframework:aws-auth-cognito:1.6.4'
     // Support for Java 8 features
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'

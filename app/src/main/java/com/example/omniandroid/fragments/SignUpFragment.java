@@ -87,7 +87,6 @@ public class SignUpFragment extends Fragment implements Validator.ValidationList
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
 
-        camera = (Button)view.findViewById(R.id.photo);
         teacher = view.findViewById(R.id.teacher);
         student = view.findViewById(R.id.student);
 
@@ -114,14 +113,6 @@ public class SignUpFragment extends Fragment implements Validator.ValidationList
                     });
                     ad.show();
                 }
-            }
-        });
-
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CameraActivity.class);
-                startActivity(intent);
             }
         });
 

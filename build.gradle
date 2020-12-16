@@ -31,4 +31,4 @@ task clean(type: Delete) {
 
 
 // Add this line at the end of the file
-apply plugin: 'com.amplifyframework.amplifytools'
+//apply plugin: 'com.amplifyframework.amplifytools'
