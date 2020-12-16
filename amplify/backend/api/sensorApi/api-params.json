@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/sensor",
+            "lambdaFunction": "sensorTest",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/sensor"
+        }
+    ],
+    "resourceName": "sensorApi",
+    "apiName": "sensorApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "sensorTest"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-omniandroid-dev-141652-authRole",
+        "unAuthRoleName": "amplify-omniandroid-dev-141652-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "sensorTest",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
