@@ -74,12 +74,6 @@ dependencies {
     // Support for Java 8 features
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
 
-    // dynamodb
-    implementation 'com.amazonaws:aws-android-sdk-core:2.6.*'
-    implementation 'com.amazonaws:aws-android-sdk-ddb:2.6.*'
-    implementation 'com.amazonaws:aws-android-sdk-ddb-document:2.6.8'
-
-
     // Retrofit 라이브러리
     implementation 'com.squareup.retrofit2:retrofit:2.6.4'
 
@@ -88,5 +82,8 @@ dependencies {
 
     // Scalars 변환기 라이브러리
     implementation 'com.squareup.retrofit2:converter-scalars:2.6.4'
+
+    // s3
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.16.0'
 
 }

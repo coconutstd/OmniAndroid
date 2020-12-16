@@ -14,7 +14,7 @@
             android:id="@+id/buttonRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="학습 환경 현재 상태 확인!" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

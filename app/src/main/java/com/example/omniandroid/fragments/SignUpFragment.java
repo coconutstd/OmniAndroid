@@ -3,11 +3,14 @@ package com.example.omniandroid.fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.omniandroid.CameraActivity;
 import com.example.omniandroid.R;
 import com.example.omniandroid.SignUpActivity;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -36,6 +40,7 @@ public class SignUpFragment extends Fragment implements Validator.ValidationList
 
     private static final String TAG = com.example.omniandroid.fragments.SignUpFragment.class.getSimpleName();
     RadioButton teacher, student;
+    Button camera;
 
     @BindView(R.id.etEmail)
     @NotEmpty
@@ -82,6 +87,7 @@ public class SignUpFragment extends Fragment implements Validator.ValidationList
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
 
+        camera = (Button)view.findViewById(R.id.photo);
         teacher = view.findViewById(R.id.teacher);
         student = view.findViewById(R.id.student);
 
@@ -110,6 +116,15 @@ public class SignUpFragment extends Fragment implements Validator.ValidationList
                 }
             }
         });
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CameraActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -160,4 +175,5 @@ public class SignUpFragment extends Fragment implements Validator.ValidationList
         Log.d(TAG, "doSignUp");
         validator.validate();
     }
+
 }

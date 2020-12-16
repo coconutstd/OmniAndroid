@@ -68,8 +68,8 @@
         android:id="@+id/identity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/etPassword"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegistration">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword1">
 
         <RadioButton
             android:id="@+id/teacher"
@@ -87,9 +87,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="학생"
-            app:layout_constraintStart_toStartOf="@+id/teacher"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/teacher" />
     </RadioGroup>
+
 
     <Button
         android:id="@+id/btnRegistration"
@@ -104,8 +105,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword1" />
+        app:layout_constraintTop_toBottomOf="@+id/photo" />
 
+    <Button
+        android:id="@+id/photo"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/colorPrimary"
+        android:text="사진 찍기"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/btnRegistration"
+        app:layout_constraintTop_toBottomOf="@+id/identity" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

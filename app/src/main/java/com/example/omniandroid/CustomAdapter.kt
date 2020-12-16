@@ -20,14 +20,20 @@ class CustomAdapter : RecyclerView.Adapter<Holder>() {
     }
 
     override fun getItemCount(): Int {
+
         return sensorList.size
     }
 }
 
 class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun setSensor(sensor: SensorItem){
-        itemView.textId.text = sensor.id
-        itemView.textPayload.text = sensor.payload.value
         itemView.textPositionId.text = sensor.positionId
+        itemView.textId.text = sensor.id
+        if(sensor.id == "user_temp")
+            itemView.textPayload.text = sensor.payload.temp
+        else if(sensor.id == "user_humi")
+            itemView.textPayload.text = sensor.payload.humi
+        else if(sensor.id =="user_emf")
+            itemView.textPayload.text = sensor.payload.emf
     }
 }

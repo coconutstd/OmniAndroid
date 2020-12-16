@@ -20,7 +20,7 @@
           "nativeClientId": "7nd1p8bpv7in9654mmi20umq1n",
           "identityPoolId": "ap-northeast-2:62e968ae-f91f-4a7b-bed6-0ba7ef2c179d",
           "identityPoolName": "videochatsolution320903db_identitypool_320903db__dev",
-          "allowUnauthenticatedIdentities": false,
+          "allowUnauthenticatedIdentities": true,
           "authRoleArn": "arn:aws:iam::221545953602:role/amplify-videochatsolution-dev-141403-authRole",
           "authRoleName": "amplify-videochatsolution-dev-141403-authRole",
           "unauthRoleArn": "arn:aws:iam::221545953602:role/amplify-videochatsolution-dev-141403-unauthRole",

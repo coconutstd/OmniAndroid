@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_NO_LOCALIZED_COLLATORS;
 
 public class CalendarFragment extends Fragment {
@@ -31,7 +33,7 @@ public class CalendarFragment extends Fragment {
     public String fname = null;
     public String str = null;
     public CalendarView calendarView;
-    public Button add_Btn, save_Btn;
+    public Button add_Btn, del_Btn;
     public TextView diaryTextView, textView2, textView3;
     public EditText contextEditText;
 
@@ -55,17 +57,15 @@ public class CalendarFragment extends Fragment {
 
         diaryTextView = (TextView)view.findViewById(R.id.diaryTextView);
         add_Btn = (Button)view.findViewById(R.id.add_Btn);
+        del_Btn = (Button)view.findViewById(R.id.del_Btn);
 
         textView2 = (TextView)view.findViewById(R.id.textView2);
-        textView3 = (TextView)view.findViewById(R.id.textView3);
-        contextEditText = (EditText)view.findViewById(R.id.contextEditText);
 
         String userID = getArguments().getString("user_id");
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                diaryTextView.setVisibility(View.VISIBLE);
                 add_Btn.setVisibility(View.VISIBLE);
                 textView2.setVisibility(View.VISIBLE);
                 checkDay(year, month, dayOfMonth, userID);
@@ -88,13 +88,20 @@ public class CalendarFragment extends Fragment {
                         }
                         else {
                             saveDiary(fname, et.getText().toString());
-                            textView2.setText(et.getText().toString());
                             textView2.setVisibility(View.VISIBLE);
                         }
                     }
                 });
                 ad.setNegativeButton("취소", null);
                 ad.show();
+            }
+        });
+        del_Btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                textView2.setText("");
+                removeDiary(fname);
             }
         });
 
@@ -109,23 +116,23 @@ public class CalendarFragment extends Fragment {
             fis = getActivity().openFileInput(fname);
 
             byte[] fileData=new byte[fis.available()];
+
+            if(fileData.length == 0)
+                textView2.setVisibility(View.INVISIBLE);
+
             fis.read(fileData);
-            fis.close();
 
-            str=new String(fileData);
+            str = new String(fileData);
 
-            contextEditText.setVisibility(View.INVISIBLE);
             textView2.setVisibility(View.VISIBLE);
             textView2.setText(str);
 
-            if(textView2.getText()==null){
-                textView2.setVisibility(View.INVISIBLE);
-                add_Btn.setVisibility(View.VISIBLE);
-            }
+            fis.close();
 
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     @SuppressLint("WrongConstant")
@@ -149,7 +156,6 @@ public class CalendarFragment extends Fragment {
                 }
             }
         });
-        alert.setNegativeButton("no!", null);
         alert.setNeutralButton("취소", null);
 
         alert.create().show();
