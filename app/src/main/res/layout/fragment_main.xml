@@ -3,21 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MainFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello! main" />
-
-    <TextView
         android:id="@+id/start_meeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:layout_marginLeft="100dp"
+        android:layout_marginTop="80dp"
         android:text="학습 시작하려면 버튼을 클릭하세요" />
 
     <Button
@@ -28,15 +24,24 @@
         android:layout_marginTop="20dp"
         android:text="학습시작" />
 
+    <TextView
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="145dp"
+        android:layout_marginTop="300dp"
+        android:text="출석체크용 사진 등록"
+        app:layout_constraintStart_toStartOf="@id/start_meeting"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartmeeting"/>
+
     <Button
         android:id="@+id/photo"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/colorPrimary"
-        android:text="사진 찍기"
-        android:textColor="@android:color/white" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="250dp"
+        android:text="정보 등록"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@+id/check" />
 
 </FrameLayout>

@@ -17,10 +17,13 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amplifyframework.core.category.CategoryConfiguration;
 import com.example.omniandroid.fragments.CalendarFragment;
 import com.example.omniandroid.fragments.MainFragment;
 import com.example.omniandroid.fragments.MonitoringFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
     MonitoringFragment fragment2;
     CalendarFragment fragment3;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

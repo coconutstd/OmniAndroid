@@ -27,7 +27,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Camera2Activity"></activity>
         <activity android:name=".CameraActivity" />
         <activity android:name=".MeetingActivity" />
         <activity

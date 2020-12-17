@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,8 +33,10 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.aws.ApiAuthProviders;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.AmplifyConfiguration;
 import com.amplifyframework.storage.options.StorageUploadFileOptions;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.example.omniandroid.fragments.MainFragment;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -48,6 +52,7 @@ public class CameraActivity extends AppCompatActivity {
     final static int PICK_FROM_ALBUM = 1; //갤러리에서 사진선택
     final static int PICK_FROM_CAMERA = 2;  //카메라로찍은 사진선택
     private File tempFile;
+    private File saveFile;
     private EditText setName;
 
     @Override
@@ -76,7 +81,8 @@ public class CameraActivity extends AppCompatActivity {
             }
         }
         Button button = (Button)findViewById(R.id.btnPicture);
-        Button btn_use = (Button)findViewById(R.id.use);
+        Button btn_ok = (Button)findViewById(R.id.btn_ok);
+
         setName = (EditText)findViewById(R.id.setName);
 
         //(보류)setName 입력값이 s3버킷에 이미 존재하는 객체 이름이랑 같은 게 존재하면 이미 존재 팝업
@@ -85,17 +91,22 @@ public class CameraActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToAlbum();
+                if(TextUtils.isEmpty(setName.getText()))
+                    Toast.makeText(getApplicationContext(), "이름을 먼저 입력해주세요!!", Toast.LENGTH_LONG).show();
+                else
+                    goToAlbum();
             }
         });
 
-        //사용 버튼 -> s3 업로드
-        btn_use.setOnClickListener(new View.OnClickListener() {
+        //완료 버튼
+        btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -117,28 +128,13 @@ public class CameraActivity extends AppCompatActivity {
         }
         if (requestCode == PICK_FROM_ALBUM) {
             Uri photoUri = data.getData();
+            String imagePath = getRealPathFromURI(photoUri);
+
             Log.d(TAG, "PICK_FROM_ALBUM photoUri : " + photoUri);
-            Cursor cursor = null;
-            try {
-                // Uri 스키마 content:///에서 file:///로 변경
-                String[] proj = {MediaStore.Images.Media.DATA};
 
-                assert photoUri != null;
-                cursor = getContentResolver().query(photoUri, proj, null, null, null);
-
-                assert cursor != null;
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-                cursor.moveToFirst();
-                tempFile = new File(cursor.getString(column_index));
-                Log.d(TAG, "tempFile Uri : " + Uri.fromFile(tempFile));
-                uploadFile(tempFile, name);
-                setImage();
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
-            }
+            saveFile = new File(imagePath);
+            uploadFile(saveFile, name);
+            setImage();
         }
     }
 
@@ -153,27 +149,20 @@ public class CameraActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.result);
 
         BitmapFactory.Options options = new BitmapFactory.Options();
-        Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
-        Log.d(TAG, "setImage : " + tempFile.getAbsolutePath());
+        Bitmap originalBm = BitmapFactory.decodeFile(saveFile.getAbsolutePath(), options);
+
+        Log.d(TAG, "setImage : " + saveFile.getAbsolutePath());
+
+//        imageView.getLayoutParams().height = 100;
+//        imageView.getLayoutParams().width = 100;
+//        imageView.requestLayout();
 
         imageView.setImageBitmap(originalBm);
-        /**
-         *  tempFile 사용 후 null 처리를 해줘야 합니다.
-         *  (resultCode != RESULT_OK) 일 때 tempFile 을 삭제하기 때문에
-         *  기존에 데이터가 남아 있게 되면 원치 않은 삭제가 이뤄집니다.
-         */
+
         tempFile = null;
     }
 
     private void uploadFile(File exampleFile, String name) {
-
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
-            writer.append("Example file contents");
-            writer.close();
-        } catch(Exception exception) {
-            Log.e("MyAmplifyApp", "Upload failed", exception);
-        }
         Log.d("s3upload", exampleFile.toString());
         Amplify.Storage.uploadFile(
                 name + ".jpg",
@@ -181,5 +170,17 @@ public class CameraActivity extends AppCompatActivity {
                 result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
                 storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
         );
+    }
+
+    // 경로 변환
+    private String getRealPathFromURI(Uri contentUri) {
+        int column_index=0;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if(cursor.moveToFirst()){
+            column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        }
+
+        return cursor.getString(column_index);
     }
 }
