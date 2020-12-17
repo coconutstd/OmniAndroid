@@ -12,6 +12,10 @@
     "sensorTest": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
+    },
+    "labeledImage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
     }
   },
   "function": {

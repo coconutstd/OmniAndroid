@@ -35,7 +35,6 @@ public class CalendarFragment extends Fragment {
     public CalendarView calendarView;
     public Button add_Btn, del_Btn;
     public TextView diaryTextView, textView2, textView3;
-    public EditText contextEditText;
 
     public CalendarFragment() {
         // Required empty public constructor
