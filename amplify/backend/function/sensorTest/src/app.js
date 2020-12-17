@@ -12,6 +12,8 @@ const AWS = require('aws-sdk')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
+var newDate = new Date();
+var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -212,3 +214,4 @@ app.listen(3000, function() {
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
 // this file
 module.exports = app
+

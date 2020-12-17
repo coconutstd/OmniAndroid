@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -40,20 +41,16 @@ import com.example.omniandroid.fragments.MainFragment;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 
 public class CameraActivity extends AppCompatActivity {
 
     private static final String TAG = "hyeju";
     final static int PICK_FROM_ALBUM = 1; //갤러리에서 사진선택
-    final static int PICK_FROM_CAMERA = 2;  //카메라로찍은 사진선택
     private File tempFile;
     private File saveFile;
-    private EditText setName;
+    ImageView result;
+    ImageView result2;
+    EditText setName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +77,10 @@ public class CameraActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         }
+
+        result = findViewById(R.id.result);
+        result2 = findViewById(R.id.result2);
+
         Button button = (Button)findViewById(R.id.btnPicture);
         Button btn_ok = (Button)findViewById(R.id.btn_ok);
 
@@ -146,8 +147,6 @@ public class CameraActivity extends AppCompatActivity {
 
     private void setImage() {
 
-        ImageView imageView = findViewById(R.id.result);
-
         BitmapFactory.Options options = new BitmapFactory.Options();
         Bitmap originalBm = BitmapFactory.decodeFile(saveFile.getAbsolutePath(), options);
 
@@ -157,7 +156,7 @@ public class CameraActivity extends AppCompatActivity {
 //        imageView.getLayoutParams().width = 100;
 //        imageView.requestLayout();
 
-        imageView.setImageBitmap(originalBm);
+        result.setImageBitmap(originalBm);
 
         tempFile = null;
     }
