@@ -27,13 +27,16 @@ class CustomAdapter : RecyclerView.Adapter<Holder>() {
 
 class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun setSensor(sensor: SensorItem){
-        itemView.textPositionId.text = sensor.positionId
         itemView.textId.text = sensor.id
-        if(sensor.id == "user_temp")
-            itemView.textPayload.text = sensor.payload.temp
-        else if(sensor.id == "user_humi")
-            itemView.textPayload.text = sensor.payload.humi
-        else if(sensor.id =="user_emf")
-            itemView.textPayload.text = sensor.payload.emf
+        itemView.textUserId.text = sensor.userId
+        itemView.textCreatedAt.text = sensor.createdAt
+        itemView.textSort.text = sensor.sort
+
+        if(sensor.sort == "1")
+            itemView.textValue.text = sensor.humi
+        else if(sensor.sort == "2")
+            itemView.textValue.text = sensor.temp
+        else if(sensor.sort == "3")
+            itemView.textValue.text = sensor.emf
     }
 }

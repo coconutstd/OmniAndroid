@@ -19,15 +19,6 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 let tableName = "sensors";
 
-function getTimeStamp() {
-    var d = new Date();
-    var s =
-        leadingZeros(d.getFullYear(), 4) + '-' +
-        leadingZeros(d.getMonth() + 1, 2) + '-' +
-        leadingZeros(d.getDate(), 2);
-    return s;
-}
-var today = getTimeStamp() ;
 const userIdPresent = false; // TODO: update in case is required to use that definition
 const partitionKeyName = "id";
 const partitionKeyType = "S";
@@ -83,7 +74,7 @@ app.get(path+"/1", function(request, response) {
         TableName: tableName,
         IndexName: "userId-createdAt-index",
         ScanIndexForward: false,
-        KeyConditionExpression: "#userId" = ":userId",
+        KeyConditionExpression: "#userId = :userId",
         FilterExpression: "#sort = :sort",
         ExpressionAttributeNames: {
             "#userId": "userId",

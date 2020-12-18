@@ -63,7 +63,7 @@ class MonitoringFragment : Fragment() {
                     adapter.sensorList.addAll(response.body() as List<SensorItem>)
                     Log.d("sensorList", "temp들어왔니?!!??")
                     adapter.notifyDataSetChanged()
-                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
+//                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
                     // 만약에 이거 제대로 찍히면 sensorList.length만큼 루프 돌아서 수치 비교 후,
                     // 여기서 푸쉬알림 추가 or 카카오톡 알림 메시지 전송
                 }
@@ -80,7 +80,7 @@ class MonitoringFragment : Fragment() {
                     adapter.sensorList.addAll(response.body() as List<SensorItem>)
                     Log.d("sensorList", "humi들어왔니?!!??")
                     adapter.notifyDataSetChanged()
-                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
+//                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
                     // 만약에 이거 제대로 찍히면 sensorList.length만큼 루프 돌아서 수치 비교 후,
                     // 여기서 푸쉬알림 추가 or 카카오톡 알림 메시지 전송
                 }
@@ -97,7 +97,7 @@ class MonitoringFragment : Fragment() {
                     adapter.sensorList.addAll(response.body() as List<SensorItem>)
                     Log.d("sensorList", "emf들어왔니?!!??")
                     adapter.notifyDataSetChanged()
-                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
+//                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
                     // 만약에 이거 제대로 찍히면 sensorList.length만큼 루프 돌아서 수치 비교 후,
                     // 여기서 푸쉬알림 추가 or 카카오톡 알림 메시지 전송
                 }
@@ -106,7 +106,6 @@ class MonitoringFragment : Fragment() {
                 }
             })
         }
-
 
         // Inflate the layout for this fragment
         return view
