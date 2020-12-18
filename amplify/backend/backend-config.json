@@ -37,6 +37,25 @@
           }
         }
       ]
+    },
+    "sensorValue": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "sensorTest",
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "attributeEnvMap": {
+            "Name": "TABLE_NAME",
+            "Arn": "TABLE_ARN"
+          }
+        }
+      ]
     }
   },
   "api": {
@@ -47,6 +66,14 @@
         {
           "category": "function",
           "resourceName": "sensorTest",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "sensorValue",
           "attributes": [
             "Name",
             "Arn"
