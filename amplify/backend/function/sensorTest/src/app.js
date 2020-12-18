@@ -12,8 +12,6 @@ const AWS = require('aws-sdk')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
-//var newDate = new Date();
-//var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -80,27 +78,24 @@ app.get(path, function(request, response) {
   })
 });
 
-app.get(path + "이준의", function(request, response) {
+app.get(path+"/1", function(request, response) {
     let params = {
         TableName: tableName,
-        ProjectionExpression: ""
-        KeyConditionExpression: "#user= :user",
+        IndexName: "userId-createdAt-index",
+        ScanIndexForward: false,
+        KeyConditionExpression: "#userId" = ":userId",
+        FilterExpression: "#sort = :sort",
         ExpressionAttributeNames: {
-            "#user": "user"
+            "#userId": "userId",
+            "#sort": "sort"
         },
         ExpressionAttributeValues: {
-            ":user": request.params.user
+            ":userId": "hyeju",
+            ":sort": "1"
         },
-        Limit: 6
+        Limit: 5
     }
-    dynamodb.query(params, (error, result) => {
-        if(error) {
-            response.json({statusCode: 500, error: error.massage})
-        } else {
-            response.json(result.Items)
-        }
-    })
-});
+})
 
 /*****************************************
  * HTTP Get method for get single object *

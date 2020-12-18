@@ -14,10 +14,46 @@
             android:id="@+id/buttonRequestTemp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="현재 환경 확인?!" />
+            android:text="temp 확인?!" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerViewTemp"
+            android:layout_width="match_parent"
+            android:layout_height="153dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="250dp">
+
+        <Button
+            android:id="@+id/buttonRequestHumi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="humi 확인?!" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHumi"
+            android:layout_width="match_parent"
+            android:layout_height="153dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="500dp">
+
+        <Button
+            android:id="@+id/buttonRequestEmf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="emf 확인?!" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEmf"
             android:layout_width="match_parent"
             android:layout_height="153dp" />
     </LinearLayout>
