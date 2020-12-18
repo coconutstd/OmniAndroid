@@ -2,6 +2,7 @@ package com.example.omniandroid.fragments
 
 import CustomAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,10 +51,11 @@ class MonitoringFragment : Fragment() {
             sensorService.sensors().enqueue(object : Callback<List<SensorItem>> {
                 override fun onResponse(call: Call<List<SensorItem>>, response: Response<List<SensorItem>>) {
                     adapter.sensorList.addAll(response.body() as List<SensorItem>)
+                    Log.d("sensorList", "들어왔니?!!??")
                     adapter.notifyDataSetChanged()
                 }
                 override fun onFailure(call: Call<List<SensorItem>>, t: Throwable) {
-
+                    Log.d("sensorList", "안들어왔니?!!??")
                 }
             })
         }

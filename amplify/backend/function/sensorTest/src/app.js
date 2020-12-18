@@ -12,8 +12,8 @@ const AWS = require('aws-sdk')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
-var newDate = new Date();
-var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
+//var newDate = new Date();
+//var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -70,7 +70,26 @@ app.get(path, function(request, response) {
       response.json(result.Items)
     }
   })
+});
 
+app.get(path + "/:id", function(request, response) {
+    let params = {
+        TableName: tableName,
+        ExpressionAttributeNames: {
+            "#id": "id"
+        },
+        ExpressionAttributeValues: {
+            "#id": request.params.id
+        },
+        Limit: 1
+    }
+    dynamodb.query(params, (error, result) => {
+        if(error) {
+            response.json({statusCode: 500, error: error.massage})
+        } else {
+            response.json(result.Items)
+        }
+    })
 });
 
 /*****************************************
