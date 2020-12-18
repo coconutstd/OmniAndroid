@@ -21,7 +21,15 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 let tableName = "sensors";
 
-
+function getTimeStamp() {
+    var d = new Date();
+    var s =
+        leadingZeros(d.getFullYear(), 4) + '-' +
+        leadingZeros(d.getMonth() + 1, 2) + '-' +
+        leadingZeros(d.getDate(), 2);
+    return s;
+}
+var today = getTimeStamp() ;
 const userIdPresent = false; // TODO: update in case is required to use that definition
 const partitionKeyName = "id";
 const partitionKeyType = "S";
@@ -72,17 +80,18 @@ app.get(path, function(request, response) {
   })
 });
 
-app.get(path + "/:id", function(request, response) {
+app.get(path + "이준의", function(request, response) {
     let params = {
         TableName: tableName,
-        KeyConditionExpression: "#id= :id",
+        ProjectionExpression: ""
+        KeyConditionExpression: "#user= :user",
         ExpressionAttributeNames: {
-            "#id": "id"
+            "#user": "user"
         },
         ExpressionAttributeValues: {
-            "id": request.params.id
+            ":user": request.params.user
         },
-        Limit: 1
+        Limit: 6
     }
     dynamodb.query(params, (error, result) => {
         if(error) {

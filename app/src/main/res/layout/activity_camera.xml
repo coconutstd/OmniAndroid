@@ -48,27 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setName" />
 
-    <ImageView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPicture"
-        tools:srcCompat="@drawable/user"  />
-
-    <ImageView
-        android:id="@+id/result2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result"
-        android:scaleType="fitXY"
-        tools:srcCompat="@drawable/user" />
-
     <Button
         android:id="@+id/btn_ok"
         android:layout_width="wrap_content"
@@ -77,8 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:scaleType="fitXY"
-        app:layout_constraintTop_toBottomOf="@+id/result2" />
+        android:scaleType="fitXY"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,18 +7,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/buttonRequest"
+            android:id="@+id/buttonRequestTemp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="학습 환경 현재 상태 확인!" />
+            android:text="현재 환경 확인?!" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="153dp" />
     </LinearLayout>
+
+
 </FrameLayout>

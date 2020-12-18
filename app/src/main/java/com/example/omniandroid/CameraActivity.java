@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -48,8 +49,6 @@ public class CameraActivity extends AppCompatActivity {
     final static int PICK_FROM_ALBUM = 1; //갤러리에서 사진선택
     private File tempFile;
     private File saveFile;
-    ImageView result;
-    ImageView result2;
     EditText setName;
 
     @Override
@@ -77,9 +76,6 @@ public class CameraActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         }
-
-        result = findViewById(R.id.result);
-        result2 = findViewById(R.id.result2);
 
         Button button = (Button)findViewById(R.id.btnPicture);
         Button btn_ok = (Button)findViewById(R.id.btn_ok);
@@ -135,7 +131,7 @@ public class CameraActivity extends AppCompatActivity {
 
             saveFile = new File(imagePath);
             uploadFile(saveFile, name);
-            setImage();
+
         }
     }
 
@@ -145,30 +141,16 @@ public class CameraActivity extends AppCompatActivity {
         startActivityForResult(intent, PICK_FROM_ALBUM);
     }
 
-    private void setImage() {
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        Bitmap originalBm = BitmapFactory.decodeFile(saveFile.getAbsolutePath(), options);
-
-        Log.d(TAG, "setImage : " + saveFile.getAbsolutePath());
-
-//        imageView.getLayoutParams().height = 100;
-//        imageView.getLayoutParams().width = 100;
-//        imageView.requestLayout();
-
-        result.setImageBitmap(originalBm);
-
-        tempFile = null;
-    }
-
     private void uploadFile(File exampleFile, String name) {
         Log.d("s3upload", exampleFile.toString());
+
         Amplify.Storage.uploadFile(
                 name + ".jpg",
                 exampleFile,
                 result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
                 storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
         );
+        Toast.makeText(this, "업로드 성공!!.", Toast.LENGTH_LONG).show();
     }
 
     // 경로 변환

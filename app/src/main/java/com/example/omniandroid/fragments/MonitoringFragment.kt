@@ -36,7 +36,9 @@ class MonitoringFragment : Fragment() {
         val adapter = CustomAdapter();
         val view = inflater.inflate(R.layout.fragment_monitoring, container, false) as ViewGroup
         val recyclerView = view.findViewById<View>(R.id.recyclerView) as RecyclerView
-        val buttonRequest = view.findViewById<View>(R.id.buttonRequest) as Button
+        val buttonRequestTemp = view.findViewById<View>(R.id.buttonRequestTemp) as Button
+//        val buttonRequestHumi = view.findViewById<View>(R.id.buttonRequestHumi) as Button
+//        val buttonRequestEmf = view.findViewById<View>(R.id.buttonRequestHumi) as Button
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
@@ -46,16 +48,19 @@ class MonitoringFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        buttonRequest.setOnClickListener {
+        buttonRequestTemp.setOnClickListener {
             val sensorService = retrofit.create(SensorService::class.java)
             sensorService.sensors().enqueue(object : Callback<List<SensorItem>> {
                 override fun onResponse(call: Call<List<SensorItem>>, response: Response<List<SensorItem>>) {
                     adapter.sensorList.addAll(response.body() as List<SensorItem>)
-                    Log.d("sensorList", "들어왔니?!!??")
+                    Log.d("sensorList", "temp들어왔니?!!??")
                     adapter.notifyDataSetChanged()
+                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
+                    // 만약에 이거 제대로 찍히면 sensorList.length만큼 루프 돌아서 수치 비교 후,
+                    // 여기서 푸쉬알림 추가 or 카카오톡 알림 메시지 전송
                 }
                 override fun onFailure(call: Call<List<SensorItem>>, t: Throwable) {
-                    Log.d("sensorList", "안들어왔니?!!??")
+                    Log.d("sensorList", "temp안들어왔니?!!??")
                 }
             })
         }
@@ -68,6 +73,5 @@ class MonitoringFragment : Fragment() {
             return MonitoringFragment()
         }
     }
-
 
 }
