@@ -75,11 +75,12 @@ app.get(path, function(request, response) {
 app.get(path + "/:id", function(request, response) {
     let params = {
         TableName: tableName,
+        KeyConditionExpression: "#id= :id",
         ExpressionAttributeNames: {
             "#id": "id"
         },
         ExpressionAttributeValues: {
-            "#id": request.params.id
+            "id": request.params.id
         },
         Limit: 1
     }
