@@ -10,7 +10,7 @@ interface SensorService {
     @GET("dev/sensor")
     fun sensors(): Call<List<SensorItem>>
 
-    // 습도 확인
+    // 습도
     @GET("dev/sensor/1")
     fun sensorHumi(): Call<List<SensorItem>>
     // 온도

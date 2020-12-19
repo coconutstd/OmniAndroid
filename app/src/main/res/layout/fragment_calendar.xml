@@ -34,7 +34,6 @@
     <EditText
         android:layout_width="0dp"
         android:layout_height="116dp"
-        android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/contextEditText"
         app:layout_constraintTop_toBottomOf="@+id/diaryTextView" android:layout_marginTop="16dp"

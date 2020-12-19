@@ -16,6 +16,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textCreatedAt"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="241dp"
+        android:text="날짜"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textId"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textUserId"
         android:layout_width="70dp"
         android:layout_height="48dp"
@@ -53,4 +64,15 @@
         android:text="값나오니?"
         app:layout_constraintStart_toEndOf="@+id/textCreatedAt"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textValue"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="24dp"
+        android:text="데이터 값"
+        app:layout_constraintStart_toEndOf="@+id/textUserId"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
