@@ -60,7 +60,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-omniandroid-dev-141652-deployment",
-          "S3Key": "amplify-builds/S3Trigger42867efd-49307152745745575437-build.zip"
+          "S3Key": "amplify-builds/S3Trigger42867efd-5736646f624a77386c72-build.zip"
         }
       }
     },

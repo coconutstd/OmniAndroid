@@ -10,18 +10,19 @@ exports.handler = function(event, context) {
 
   var params = {
     Bucket: bucket,
-    Key: key,
+    Key: key + 'public',
     ACL: 'public-read'
   };
 
-  s3.putObjectAcl(params, function(err, data){
-    if(err){
-      callback(err);
-    }
-    console.log(data);
-  })
-
-  console.log('no error');
+   s3.getObject({ Bucket: bucket, Key: key }).promise()
+      .then(
+          s3.putObject(params).promise()
+          .then(() => { callback(null) })
+          .catch(err => { callback(err) }))
+      .catch(err => {
+        console.log('error resizing image: ', err)
+        callback(err)
+      })
 
   context.done(null, 'Successfully processed S3 event'); // SUCCESS with message
 };
