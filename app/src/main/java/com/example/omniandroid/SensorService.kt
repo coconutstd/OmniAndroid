@@ -6,19 +6,27 @@ import retrofit2.http.Path
 
 interface SensorService {
 
-    // 전체 받아오기
+    // 전체, 온도, 습도, 이산화탄소 리스트
     @GET("dev/sensor")
     fun sensors(): Call<List<SensorItem>>
 
-    // 습도
     @GET("dev/sensor/1")
     fun sensorHumi(): Call<List<SensorItem>>
-    // 온도
+
     @GET("dev/sensor/2")
     fun sensorTemp(): Call<List<SensorItem>>
-    //이산화탄소
+
     @GET("dev/sensor/3")
     fun sensorEmf(): Call<List<SensorItem>>
 
 
+    // 온도, 습도, 이산화탄소 값
+    @GET("value/1")
+    fun valueHumi(): Call<String>
+
+    @GET("value/2")
+    fun valueTemp(): Call<String>
+
+    @GET("value/3")
+    fun valueEmp(): Call<String>
 }
