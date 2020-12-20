@@ -68,46 +68,30 @@ public class MeetingActivity extends AppCompatActivity {
         mWebSettings.setDomStorageEnabled(true); // 로컬저장소 허용 여부
         mWebView.loadUrl("https://omnichat.site/");
 
-        Thread thread = new Thread() {
-            Thread thread = new Thread() {
-                public void run() {
-                    while(true) {
-                        try {
-                            sleep(5000);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        handler.sendEmptyMessage(0);
-                    }
-                }
-            };
-        };
-        thread.start();
 
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://4cxysyupk7.execute-api.ap-northeast-2.amazonaws.com/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        SensorService valueTempService = retrofit.create(SensorService.class);
-//        Call<String> value = valueTempService.valueTemp();
-//        value.enqueue(new Callback<String>() {
-//
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                Log.d("CallResponse" , "들어왔나요?????????");
-////                Log.d("CallValue", call);
-//                // 다 가져오지 말고 최근 꺼 하나만 가져와야 됨 - api 수정 필요
-//                // 핸들러 실시간으로 계속 실행시키는 거 추가해야 함
-//                if(call.equals("26.6"))
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://4cxysyupk7.execute-api.ap-northeast-2.amazonaws.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SensorService valueTempService = retrofit.create(SensorService.class);
+        Call<String> value = valueTempService.valueTemp();
+        value.enqueue(new Callback<String>() {
+
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.d("CallResponse" , "들어왔나요?????????");
+                Log.d("CallValue", String.valueOf(response.code()));
+                // 핸들러 실시간으로 계속 실행시키는 거 추가해야 함
+//                if(response.body().toString().equals("26.6"))
 //                    getNotificationBuilder();
 //            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                    Log.d("CallFailure", "설마 안들어오나요?!????!?!");
-//            }
-//        });
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                    Log.d("CallFailure", "설마 안들어오나요?!????!?!");
+            }
+        });
     }
     
     private void getNotificationBuilder() {
@@ -147,36 +131,6 @@ public class MeetingActivity extends AppCompatActivity {
         nm.notify("태그????????", 1, builder.build());
     }
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            Log.d("Call", "들어왔나요 핸들러로????");
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://4cxysyupk7.execute-api.ap-northeast-2.amazonaws.com/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            SensorService valueTempService = retrofit.create(SensorService.class);
-            Call<String> value = valueTempService.valueTemp();
-            value.enqueue(new retrofit2.Callback<String>() {
-
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    Log.d("CallResponse" , "들어왔나요?????????");
-//                Log.d("CallValue", call);
-                    // 다 가져오지 말고 최근 꺼 하나만 가져와야 됨 - api 수정 필요
-                    // 핸들러 실시간으로 계속 실행시키는 거 추가해야 함
-                    if(call.toString().equals("26.6"))
-                        getNotificationBuilder();
-                }
-
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                    Log.d("CallFailure", "설마 안들어오나요?!????!?!");
-                }
-            });
-        }
-    };
 
     private void checkDangerousPermissions() {
         String[] permissions = {
