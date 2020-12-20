@@ -38,7 +38,8 @@ public class SignUpActivity extends FragmentActivity
     private static final String TAG = com.example.omniandroid.SignUpActivity.class.getSimpleName();
     private String userName, password;
     private Context context;
-    RadioButton teacher, student;
+    private static String userId;
+    private static int identityCheckedId_;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +66,13 @@ public class SignUpActivity extends FragmentActivity
     }
 
     @Override
-    public void signUp(String email, String password, int identity) {
+    public void signUp(String email, String password) {
         userName = email;
         this.password = password;
 
         // Add code here
         final Map<String, String> attributes = new HashMap<>();
         attributes.put("email", email);
-        if(identity == 0)
-            Log.d("teacher!", String.valueOf(identity));
-        else
-            Log.d("student!", String.valueOf(identity));
         AWSMobileClient.getInstance().signUp(userName, password, attributes, null, new Callback<SignUpResult>() {
             @Override
             public void onResult(final SignUpResult signUpResult) {
@@ -115,7 +112,7 @@ public class SignUpActivity extends FragmentActivity
                     } else {
                         makeToast(context, "Sign-up done.");
                         // SignIn and move to MainActivity
-                        _signIn(userName, password);
+                        _signIn(userName, password, identityCheckedId_);
                     }
                 });
             }
@@ -131,8 +128,10 @@ public class SignUpActivity extends FragmentActivity
         });
     }
 
-    private void _signIn(String username, String password) {
+    private void _signIn(String username, String password, int identityCheckedId) {
         // Add code here
+        userId = username;
+        identityCheckedId_ = identityCheckedId;
         AWSMobileClient.getInstance().signIn(username, password, null, new Callback<SignInResult>() {
             @Override
             public void onResult(final SignInResult signInResult) {
@@ -141,7 +140,7 @@ public class SignUpActivity extends FragmentActivity
                     switch (signInResult.getSignInState()) {
                         case DONE:
                             makeToast(context, "Sign-in done.");
-                            CommonAction.openMain(context);
+                            CommonAction.openMain(context, userId, identityCheckedId);
                             break;
                         case SMS_MFA:
                             makeToast(context, "Please confirm sign-in with SMS.");

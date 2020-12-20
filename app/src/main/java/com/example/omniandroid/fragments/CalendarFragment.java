@@ -123,7 +123,8 @@ public class CalendarFragment extends Fragment {
 
             str = new String(fileData);
 
-            textView2.setVisibility(View.VISIBLE);
+            if(fileData.length != 0)
+                textView2.setVisibility(View.VISIBLE);
             textView2.setText(str);
 
             fis.close();
