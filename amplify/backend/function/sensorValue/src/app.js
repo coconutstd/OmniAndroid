@@ -84,13 +84,15 @@ app.get(path+"/:id", function(request, response) {
         IndexName: "sort-createdAt-index",
         ProjectionExpression : `#${enumValues[request.params.id]}`,
         KeyConditionExpression: "#sort = :sort",
+        ScanIndexForward : false,
         ExpressionAttributeNames: {
             "#sort" : "sort",
             [`#${enumValues[request.params.id]}`] : enumValues[request.params.id]
         },
         ExpressionAttributeValues: {
             ":sort" : request.params.id
-        }
+        },
+        Limit: 1
      }
 
     dynamodb.query(params, (error, result) => {
