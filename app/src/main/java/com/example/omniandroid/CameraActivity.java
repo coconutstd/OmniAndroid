@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,8 +59,8 @@ public class CameraActivity extends AppCompatActivity {
 
         try {
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.configure(getApplicationContext());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
             Log.i("MyAmplifyApp", "Initialized Amplify");
 //            Amplify.addPlugin(new AWSApiPlugin());
 
@@ -77,7 +78,7 @@ public class CameraActivity extends AppCompatActivity {
             }
         }
 
-        Button button = (Button)findViewById(R.id.btnPicture);
+        ImageButton button = (ImageButton)findViewById(R.id.btnPicture);
         Button btn_ok = (Button)findViewById(R.id.btn_ok);
 
         setName = (EditText)findViewById(R.id.setName);
@@ -99,6 +100,7 @@ public class CameraActivity extends AppCompatActivity {
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
@@ -150,7 +152,7 @@ public class CameraActivity extends AppCompatActivity {
                 result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
                 storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
         );
-        Toast.makeText(this, "업로드 성공!!.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "사진이 저장되었습니다.", Toast.LENGTH_LONG).show();
     }
 
     // 경로 변환

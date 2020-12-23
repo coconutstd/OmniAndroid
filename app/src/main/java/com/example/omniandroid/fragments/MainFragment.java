@@ -12,6 +12,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.example.omniandroid.CameraActivity;
@@ -37,8 +38,8 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        Button btn_startmeeting = (Button)view.findViewById(R.id.btnStartmeeting);
-        Button camera = (Button)view.findViewById(R.id.photo);
+        ImageButton btn_startmeeting = (ImageButton)view.findViewById(R.id.btnStartmeeting);
+        ImageButton camera = (ImageButton)view.findViewById(R.id.photo);
 
         btn_startmeeting.setOnClickListener(new View.OnClickListener() {
             @Override

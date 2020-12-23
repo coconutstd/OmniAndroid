@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OmniAndroid</string>
+    <string name="app_name">OMNI</string>
     <string name="write_title">Subject :</string>
     <string name="write_title_hint">Please enter a subject</string>
     <string name="write_content_hint">Please write a new post</string>

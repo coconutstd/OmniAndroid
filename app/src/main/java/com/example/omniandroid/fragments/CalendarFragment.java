@@ -54,7 +54,6 @@ public class CalendarFragment extends Fragment {
 
         CalendarView calendarView = (CalendarView)view.findViewById(R.id.calendarView);
 
-        diaryTextView = (TextView)view.findViewById(R.id.diaryTextView);
         add_Btn = (Button)view.findViewById(R.id.add_Btn);
         del_Btn = (Button)view.findViewById(R.id.del_Btn);
 

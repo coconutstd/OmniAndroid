@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -23,12 +24,17 @@ import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.example.omniandroid.fragments.MonitoringFragment;
 
+import java.util.List;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +53,7 @@ public class MeetingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meeting);
 
         checkDangerousPermissions();
-        mWebView = (WebView)this.findViewById(R.id.webview_meeting);
+        mWebView = (WebView) this.findViewById(R.id.webview_meeting);
         mWebView.setWebChromeClient(new WebChromeClient() {
             @TargetApi(Build.VERSION_CODES.P)
             @Override
@@ -68,34 +74,36 @@ public class MeetingActivity extends AppCompatActivity {
         mWebSettings.setDomStorageEnabled(true); // 로컬저장소 허용 여부
         mWebView.loadUrl("https://omnichat.site/");
 
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://4cxysyupk7.execute-api.ap-northeast-2.amazonaws.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        SensorService valueTempService = retrofit.create(SensorService.class);
-        Call<String> value = valueTempService.valueTemp();
-        value.enqueue(new Callback<String>() {
-
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Log.d("CallResponse" , "들어왔나요?????????");
-                Log.d("CallValue", String.valueOf(response.code()));
-                // 핸들러 실시간으로 계속 실행시키는 거 추가해야 함
-//                if(response.body().toString().equals("26.6"))
-//                    getNotificationBuilder();
-//            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                    Log.d("CallFailure", "설마 안들어오나요?!????!?!");
-            }
-        });
     }
-    
+//        MonitoringFragment로 옮길거임
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://4cxysyupk7.execute-api.ap-northeast-2.amazonaws.com/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        SensorService valueTempService = retrofit.create(SensorService.class);
+//        Call<ValueItem> value = valueTempService.valueTemp();
+//        value.enqueue(new Callback<ValueItem>() {
+//
+//            @Override
+//            public void onResponse(Call<ValueItem> call, Response<ValueItem> response) {
+//                Log.d("CallResponse", "들어왔나요?????????");
+//                Log.d("CallValue", String.valueOf(response.body()));
+//                // 핸들러 실시간으로 계속 실행시키는 거 추가해야 함
+////                if(response.body().toString().equals("26.6"))
+////                    getNotificationBuilder();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ValueItem> call, Throwable t) {
+//                Log.d("CallFailure", "설마 안들어오나요?!????!?!");
+//            }
+//
+//        });
+//    }
+
     private void getNotificationBuilder() {
-        
+
         // 알림 채널 생성
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
@@ -109,7 +117,7 @@ public class MeetingActivity extends AppCompatActivity {
             notificationChannel.setDescription("알람테스트");
             notificationManager.createNotificationChannel(notificationChannel);
         }
-        
+
 //        // 알림 클릭 시 모니터링 액티비티로 이동 - 근데 그러면 학습이 나가지니까 그냥 알림만 주는게 나을듯
 //        Intent notificationIntent = new Intent(this, MainActivity.class);
 //        PendingIntent pendingNotificationIntent = PendingIntent.getActivity(
@@ -132,7 +140,7 @@ public class MeetingActivity extends AppCompatActivity {
     }
 
 
-    private void checkDangerousPermissions() {
+    private void checkDangerousPermissions () {
         String[] permissions = {
                 android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE,

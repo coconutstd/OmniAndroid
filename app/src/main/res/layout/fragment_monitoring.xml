@@ -5,21 +5,39 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MonitoringFragment">
 
+    <View
+        android:background="#4646CD"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:text="학습환경 모니터링" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="55dp"
+        android:background="#4646CD" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/buttonRequestTemp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="temp 확인?!" />
+        android:orientation="vertical"
+        android:layout_marginTop="200dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewTemp"
+            android:id="@+id/recyclerViewEmf"
             android:layout_width="match_parent"
-            android:layout_height="153dp" />
+            android:layout_height="153dp"
+            android:visibility="invisible"/>
     </LinearLayout>
 
     <LinearLayout
@@ -28,35 +46,137 @@
         android:orientation="vertical"
         android:layout_marginTop="200dp">
 
-        <Button
-            android:id="@+id/buttonRequestHumi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="humi 확인?!" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHumi"
             android:layout_width="match_parent"
-            android:layout_height="153dp" />
+            android:layout_height="153dp"
+            android:visibility="invisible" />
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="400dp">
-
-        <Button
-            android:id="@+id/buttonRequestEmf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="emf 확인?!" />
+        android:layout_marginTop="200dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewEmf"
+            android:id="@+id/recyclerViewTemp"
             android:layout_width="match_parent"
-            android:layout_height="153dp" />
+            android:layout_height="153dp"
+            android:visibility="invisible" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나의 집중도는?"
+        android:textSize="18dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="230dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="300dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewScore"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학습 환경 알림"
+        android:textSize="18dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학습 환경에 따른 푸쉬알림을 활성화시킵니다."
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="185dp"/>
+
+    <Button
+        android:id="@+id/onoff"
+        android:layout_width="140dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="90dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나의 학습 환경은?"
+        android:textSize="18dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="425dp"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="470dp"
+        android:background="#322D2D"
+        android:padding="0sp"
+        android:scaleType="centerInside"
+        android:src="@drawable/hot" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="470dp"
+        android:background="#322D2D"
+        android:padding="0sp"
+        android:scaleType="centerInside"
+        android:src="@drawable/humidity" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="470dp"
+        android:background="#322D2D"
+        android:padding="0sp"
+        android:scaleType="centerInside"
+        android:src="@drawable/nuclear" />
+
+    <TextView
+        android:id="@+id/valueTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="온도"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="580dp"/>
+
+    <TextView
+        android:id="@+id/valueHumi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="습도"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="580dp"/>
+
+    <TextView
+        android:id="@+id/valueEmf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이산화탄소농도"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="580dp"/>
 
 </FrameLayout>

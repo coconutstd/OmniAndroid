@@ -17,6 +17,6 @@
         app:showAsAction="always"
         android:icon="@drawable/calendar"
         android:enabled="true"
-        android:title="KEYWORD CALENDAR"/>
+        android:title="CALENDAR"/>
 
 </menu>

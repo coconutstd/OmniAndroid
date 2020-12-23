@@ -84,8 +84,8 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                         Log.d("R.id.teacher", String.valueOf(R.id.teacher));
                         AlertDialog.Builder ad = new AlertDialog.Builder(LoginActivity.this);
 
-                        ad.setTitle("진짜 선생님인가요????");
-                        ad.setMessage("인증번호를 입력해주세요");
+                        ad.setTitle("선생님 확인 메세지");
+                        ad.setMessage("발급받은 인증번호를 입력해주세요.");
 
                         final EditText et = new EditText(LoginActivity.this);
                         ad.setView(et);
@@ -96,27 +96,34 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                                 //인증번호랑 et랑 비교 후 일치하면 넘어가기
                                 Log.d("dialogValue1", et.getText().toString());
                                 if(et.getText().toString().equals("1234")) {
-                                    Toast.makeText(context.getApplicationContext(), "인증됐어요!!!!!!", Toast.LENGTH_LONG).show();
-
+                                    Toast.makeText(context.getApplicationContext(), "인증이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                                    Log.d("teacher!!!!", String.valueOf(teacher.isChecked()));
+                                    dialog.cancel();
+                                }
+                                else if(et.getText().toString().equals("")) {
+                                    Toast.makeText(context.getApplicationContext(), "인증번호가 입력되지 않았습니다.", Toast.LENGTH_LONG).show();
+                                    teacher.setChecked(false);
                                     dialog.cancel();
                                 }
                                 else {
-                                    Toast.makeText(context.getApplicationContext(), "인증번호 틀렸어요!!!!!!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context.getApplicationContext(), "인증에 실패하였습니다.", Toast.LENGTH_LONG).show();
                                     teacher.setChecked(false);
                                     dialog.cancel();
                                 }
                                 identityCheckedId = R.id.teacher;
+                                Log.d("여기는 오니??????? teacher", String.valueOf(identityCheckedId));
                             }
                         });
                         ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                teacher.setChecked(false);
                                 dialog.cancel();
                             }
                         });
                         ad.show();
 
-                        Log.d("teacherChecked", String.valueOf(identityCheckedId));
+                        Log.d("teacherChecked 여기까지 오니?", String.valueOf(identityCheckedId));
                         break;
                     case R.id.student:
                         Log.d("R.id.student", String.valueOf(R.id.student));
@@ -163,7 +170,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                     Log.d(TAG, "Sign-in callback state: " + signInResult.getSignInState());
                     switch (signInResult.getSignInState()) {
                         case DONE:
-                            makeToast(context,"Sign-in done.");
+                            makeToast(context,"로그인 성공");
                             CommonAction.openMain(context, userId, identityCheckedId);
                             break;
                         case SMS_MFA:
@@ -192,7 +199,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     public void doLogin(View view) {
         if(identityCheckedId == 0)
-            Toast.makeText(context.getApplicationContext(), "선생님인가요 학생인가요!! 고르세요우", Toast.LENGTH_LONG).show();
+            Toast.makeText(context.getApplicationContext(), "비어있는 항목을 모두 작성해주세요.", Toast.LENGTH_LONG).show();
         else
             validator.validate();
     }

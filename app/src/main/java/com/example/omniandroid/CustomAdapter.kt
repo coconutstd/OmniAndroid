@@ -41,3 +41,4 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             itemView.textValue.text = sensor.emf
     }
 }
+

@@ -2,7 +2,6 @@ package com.example.omniandroid
 
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 
 interface SensorService {
 
@@ -21,12 +20,15 @@ interface SensorService {
 
 
     // 온도, 습도, 이산화탄소 값
-    @GET("value/1")
-    fun valueHumi(): Call<String>
+    @GET("dev/value/1")
+    fun valueHumi(): Call<List<ValueItem>>
 
-    @GET("value/2")
-    fun valueTemp(): Call<String>
+    @GET("dev/value/2")
+    fun valueTemp(): Call<List<ValueItem>>
 
-    @GET("value/3")
-    fun valueEmp(): Call<String>
+    @GET("dev/value/3")
+    fun valueEmf(): Call<List<ValueItem>>
+
+    @GET("dev/recent-score/5c0c966f-9461-458f-a127-91a8b5539c38")
+    fun valueScore(): Call<List<ScoreItem>>
 }
