@@ -87,6 +87,7 @@ public class MonitoringFragment : Fragment() {
             }
         })
 
+
         btn_onoff.setBackgroundDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.switch_off))
         btn_onoff.setOnClickListener() {
 //            while(count == 10) {
