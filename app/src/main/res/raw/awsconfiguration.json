@@ -29,5 +29,11 @@
         "Default": {
             "Region": "ap-northeast-2"
         }
+    },
+    "S3TransferUtility": {
+        "Default": {
+            "Bucket": "labeled-image-omni141652-dev",
+            "Region": "ap-northeast-2"
+        }
     }
 }

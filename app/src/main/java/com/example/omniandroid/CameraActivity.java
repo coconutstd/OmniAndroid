@@ -59,8 +59,8 @@ public class CameraActivity extends AppCompatActivity {
 
         try {
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.configure(getApplicationContext());
             Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.configure(getApplicationContext());
             Log.i("MyAmplifyApp", "Initialized Amplify");
 //            Amplify.addPlugin(new AWSApiPlugin());
 

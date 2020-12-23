@@ -12,6 +12,21 @@
     "sensorTest": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
+    },
+    "LabeledImage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "S3Trigger1f8a6d18",
+          "attributes": [
+            "Name",
+            "Arn",
+            "LambdaExecutionRole"
+          ]
+        }
+      ]
     }
   },
   "function": {
@@ -52,6 +67,11 @@
           }
         }
       ]
+    },
+    "S3Trigger1f8a6d18": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true
     }
   },
   "api": {
