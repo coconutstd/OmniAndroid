@@ -82,7 +82,7 @@ app.get(path+"/:id", function(request, response) {
     let params = {
         TableName: tableName,
         IndexName: "sort-createdAt-index",
-        ProjectionExpression : `#${enumValues[request.params.id]}`,
+        ProjectionExpression : `#${enumValues[request.params.id]}, sort`,
         KeyConditionExpression: "#sort = :sort",
         ScanIndexForward : false,
         ExpressionAttributeNames: {
