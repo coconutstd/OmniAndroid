@@ -20,6 +20,8 @@ import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amplifyframework.core.category.CategoryConfiguration;
 import com.example.omniandroid.fragments.CalendarFragment;
 import com.example.omniandroid.fragments.MainFragment;
+import com.example.omniandroid.fragments.TeacherMainFragment;
+import com.example.omniandroid.fragments.TeacherMonitoringFragment;
 import com.example.omniandroid.fragments.MonitoringFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -35,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
     MainFragment fragment1;
     MonitoringFragment fragment2;
+    TeacherMonitoringFragment fragment4;
     CalendarFragment fragment3;
+    TeacherMainFragment fragment5;
+    public int checkedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +57,14 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String userId = intent.getStringExtra("user_id");
+        checkedId = intent.getIntExtra("checkedId", 0);
 
         //프래그먼트 생성
         fragment1 = new MainFragment();
         fragment2 = new MonitoringFragment();
+        fragment4 = new TeacherMonitoringFragment();
         fragment3 = new CalendarFragment();
+        fragment5 = new TeacherMainFragment();
 
         Bundle bundle = new Bundle();
         bundle.putString("user_Id", "user_id");
@@ -71,12 +79,19 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                switch (item.getItemId()) {
                    case R.id.tab1:{
-                       getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();
+                       if(checkedId == R.id.teacher)
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();
+                       else if(checkedId == R.id.student)
+                           getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment5).commitAllowingStateLoss();
                        return true;
                    }
                    case R.id.tab2:{
-                       getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2).commitAllowingStateLoss();
-                       return true;
+                       Log.d("checkedId", String.valueOf(checkedId));
+                       if(checkedId == R.id.teacher)
+                           getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment4).commitAllowingStateLoss();
+                       else if(checkedId == R.id.student)
+                           getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2).commitAllowingStateLoss();
+                        return true;
                    }
                    case R.id.tab3:{
                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment3).commitAllowingStateLoss();
@@ -92,9 +107,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AWSMobileClient.getInstance().signOut();
-                CommonAction.openAuthMain(com.example.omniandroid.MainActivity.this);
+                CommonAction.openAuthMain(com.example.omniandroid.MainActivity.this, userId, checkedId);
             }
         });
+
     }
 
     private void checkPermission(){

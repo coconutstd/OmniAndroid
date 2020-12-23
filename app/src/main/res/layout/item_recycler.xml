@@ -7,30 +7,72 @@
 
     <TextView
         android:id="@+id/textId"
-        android:layout_width="130dp"
+        android:layout_width="50dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="3dp"
-        android:text="id"
-        app:layout_constraintEnd_toStartOf="@+id/textPayload"
+        android:text="과연"
+        app:layout_constraintEnd_toStartOf="@+id/textUserId"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textPayload"
-        android:layout_width="130dp"
+        android:id="@+id/textCreatedAt"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
-        android:text="payload"
+        android:layout_marginEnd="241dp"
+        android:text="날짜"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textId"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textPositionId"
+        android:id="@+id/textUserId"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="3dp"
+        android:text="이름"
+        app:layout_constraintEnd_toStartOf="@+id/textSort"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textSort"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:text="데이터"
+        app:layout_constraintStart_toEndOf="@+id/textUserId"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textCreatedAt"
         android:layout_width="130dp"
         android:layout_height="48dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="24dp"
-        android:text="positionId"
-        app:layout_constraintStart_toEndOf="@+id/textPayload"
+        android:text="시간"
+        app:layout_constraintStart_toEndOf="@+id/textSort"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textValue"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="24dp"
+        android:text="값나오니?"
+        app:layout_constraintStart_toEndOf="@+id/textCreatedAt"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textValue"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="24dp"
+        android:text="데이터 값"
+        app:layout_constraintStart_toEndOf="@+id/textUserId"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

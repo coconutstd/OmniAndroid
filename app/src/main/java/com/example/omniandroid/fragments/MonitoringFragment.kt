@@ -22,7 +22,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MonitoringFragment : Fragment() {
+public class MonitoringFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,15 +33,26 @@ class MonitoringFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val adapter = CustomAdapter();
-        val view = inflater.inflate(R.layout.fragment_monitoring, container, false) as ViewGroup
-        val recyclerView = view.findViewById<View>(R.id.recyclerView) as RecyclerView
-        val buttonRequestTemp = view.findViewById<View>(R.id.buttonRequestTemp) as Button
-//        val buttonRequestHumi = view.findViewById<View>(R.id.buttonRequestHumi) as Button
-//        val buttonRequestEmf = view.findViewById<View>(R.id.buttonRequestHumi) as Button
+        val adapterTemp = CustomAdapter();
+        val adapterHumi = CustomAdapter();
+        val adapterEmf = CustomAdapter();
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
+        val view = inflater.inflate(R.layout.fragment_monitoring, container, false) as ViewGroup
+        val recyclerViewTemp = view.findViewById<View>(R.id.recyclerViewTemp) as RecyclerView
+        val recyclerViewHumi = view.findViewById<View>(R.id.recyclerViewHumi) as RecyclerView
+        val recyclerViewEmf = view.findViewById<View>(R.id.recyclerViewEmf) as RecyclerView
+
+        val buttonRequestTemp = view.findViewById<View>(R.id.buttonRequestTemp) as Button
+        val buttonRequestHumi = view.findViewById<View>(R.id.buttonRequestHumi) as Button
+        val buttonRequestEmf = view.findViewById<View>(R.id.buttonRequestEmf) as Button
+
+        recyclerViewTemp.layoutManager = LinearLayoutManager(context)
+        recyclerViewTemp.adapter = adapterTemp
+        recyclerViewHumi.layoutManager = LinearLayoutManager(context)
+        recyclerViewHumi.adapter = adapterHumi
+        recyclerViewEmf.layoutManager = LinearLayoutManager(context)
+        recyclerViewEmf.adapter = adapterEmf
+
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://4cxysyupk7.execute-api.ap-northeast-2.amazonaws.com/")
@@ -49,13 +60,13 @@ class MonitoringFragment : Fragment() {
             .build()
 
         buttonRequestTemp.setOnClickListener {
-            val sensorService = retrofit.create(SensorService::class.java)
-            sensorService.sensors().enqueue(object : Callback<List<SensorItem>> {
+            val sensorServiceTemp = retrofit.create(SensorService::class.java)
+            sensorServiceTemp.sensorTemp().enqueue(object : Callback<List<SensorItem>> {
                 override fun onResponse(call: Call<List<SensorItem>>, response: Response<List<SensorItem>>) {
-                    adapter.sensorList.addAll(response.body() as List<SensorItem>)
+                    adapterTemp.sensorList.addAll(response.body() as List<SensorItem>)
                     Log.d("sensorList", "temp들어왔니?!!??")
-                    adapter.notifyDataSetChanged()
-                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
+                    adapterTemp.notifyDataSetChanged()
+//                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
                     // 만약에 이거 제대로 찍히면 sensorList.length만큼 루프 돌아서 수치 비교 후,
                     // 여기서 푸쉬알림 추가 or 카카오톡 알림 메시지 전송
                 }
@@ -64,6 +75,41 @@ class MonitoringFragment : Fragment() {
                 }
             })
         }
+
+        buttonRequestHumi.setOnClickListener {
+            val sensorServiceHumi = retrofit.create(SensorService::class.java)
+            sensorServiceHumi.sensorHumi().enqueue(object : Callback<List<SensorItem>> {
+                override fun onResponse(call: Call<List<SensorItem>>, response: Response<List<SensorItem>>) {
+                    adapterHumi.sensorList.addAll(response.body() as List<SensorItem>)
+                    Log.d("sensorList", "humi들어왔니?!!??")
+                    adapterHumi.notifyDataSetChanged()
+//                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
+                    // 만약에 이거 제대로 찍히면 sensorList.length만큼 루프 돌아서 수치 비교 후,
+                    // 여기서 푸쉬알림 추가 or 카카오톡 알림 메시지 전송
+                }
+                override fun onFailure(call: Call<List<SensorItem>>, t: Throwable) {
+                    Log.d("sensorList", "humi안들어왔니?!!??")
+                }
+            })
+        }
+
+        buttonRequestEmf.setOnClickListener {
+            val sensorServiceEmf = retrofit.create(SensorService::class.java)
+            sensorServiceEmf.sensorEmf().enqueue(object : Callback<List<SensorItem>> {
+                override fun onResponse(call: Call<List<SensorItem>>, response: Response<List<SensorItem>>) {
+                    adapterEmf.sensorList.addAll(response.body() as List<SensorItem>)
+                    Log.d("sensorList", "emf들어왔니?!!??")
+                    adapterEmf.notifyDataSetChanged()
+//                    Log.d("payloadCheck", adapter.sensorList[1].payload.toString())
+                    // 만약에 이거 제대로 찍히면 sensorList.length만큼 루프 돌아서 수치 비교 후,
+                    // 여기서 푸쉬알림 추가 or 카카오톡 알림 메시지 전송
+                }
+                override fun onFailure(call: Call<List<SensorItem>>, t: Throwable) {
+                    Log.d("sensorList", "emf안들어왔니?!!??")
+                }
+            })
+        }
+
         // Inflate the layout for this fragment
         return view
     }

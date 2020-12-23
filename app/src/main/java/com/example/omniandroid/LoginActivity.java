@@ -1,12 +1,16 @@
 package com.example.omniandroid;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +19,6 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
 import com.amazonaws.mobile.client.results.SignInResult;
-import com.example.omniandroid.fragments.CalendarFragment;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -45,12 +48,84 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     @Password(min = 8, scheme = Password.Scheme.ANY)
     EditText etPassword;
 
+//    @BindView(R.id.identity)
+//    RadioGroup identity;
+//
+//    @BindView(R.id.teacher)
+//    RadioButton teacher;
+//
+//    @BindView(R.id.student)
+//    RadioButton student;
+
+
     private Context context;
+    public int identityCheckedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        RadioGroup identity = findViewById(R.id.identity);
+        RadioButton teacher = findViewById(R.id.teacher);
+        RadioButton student = findViewById(R.id.student);
+
+        boolean check = false;
+        teacher.setChecked(false);
+        student.setChecked(false);
+
+
+        identity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch(checkedId) {
+                    case R.id.teacher:
+                        Log.d("R.id.teacher", String.valueOf(R.id.teacher));
+                        AlertDialog.Builder ad = new AlertDialog.Builder(LoginActivity.this);
+
+                        ad.setTitle("진짜 선생님인가요????");
+                        ad.setMessage("인증번호를 입력해주세요");
+
+                        final EditText et = new EditText(LoginActivity.this);
+                        ad.setView(et);
+                        Log.d("dialog","들어갔는가요???");
+                        ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //인증번호랑 et랑 비교 후 일치하면 넘어가기
+                                Log.d("dialogValue1", et.getText().toString());
+                                if(et.getText().toString().equals("1234")) {
+                                    Toast.makeText(context.getApplicationContext(), "인증됐어요!!!!!!", Toast.LENGTH_LONG).show();
+
+                                    dialog.cancel();
+                                }
+                                else {
+                                    Toast.makeText(context.getApplicationContext(), "인증번호 틀렸어요!!!!!!", Toast.LENGTH_LONG).show();
+                                    teacher.setChecked(false);
+                                    dialog.cancel();
+                                }
+                                identityCheckedId = R.id.teacher;
+                            }
+                        });
+                        ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        ad.show();
+
+                        Log.d("teacherChecked", String.valueOf(identityCheckedId));
+                        break;
+                    case R.id.student:
+                        Log.d("R.id.student", String.valueOf(R.id.student));
+                        identityCheckedId = R.id.student;
+                        Log.d("studentChecked", String.valueOf(identityCheckedId));
+                        break;
+                }
+            }
+        });
 
         ButterKnife.bind(this);
         validator = new Validator(this);
@@ -58,16 +133,11 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
         context = this;
 
-        String userId = etEmail.getText().toString();
-
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        intent.putExtra("user_id", userId);
-        startActivity(intent);
     }
 
     @Override
     public void onValidationSucceeded() {
-        _signIn(etEmail.getText().toString(), etPassword.getText().toString());
+        _signIn(etEmail.getText().toString(), etPassword.getText().toString(), etEmail.getText().toString(), identityCheckedId);
     }
 
     @Override
@@ -85,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         }
     }
 
-    private void _signIn(String userName, String password) {
+    private void _signIn(String userName, String password, String userId, int identityCheckedId) {
         AWSMobileClient.getInstance().signIn(userName, password, null, new Callback<SignInResult>() {
             @Override
             public void onResult(final SignInResult signInResult) {
@@ -94,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                     switch (signInResult.getSignInState()) {
                         case DONE:
                             makeToast(context,"Sign-in done.");
-                            CommonAction.openMain(context);
+                            CommonAction.openMain(context, userId, identityCheckedId);
                             break;
                         case SMS_MFA:
                             makeToast(context, "Please confirm sign-in with SMS.");
@@ -121,6 +191,9 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     }
 
     public void doLogin(View view) {
-        validator.validate();
+        if(identityCheckedId == 0)
+            Toast.makeText(context.getApplicationContext(), "선생님인가요 학생인가요!! 고르세요우", Toast.LENGTH_LONG).show();
+        else
+            validator.validate();
     }
 }

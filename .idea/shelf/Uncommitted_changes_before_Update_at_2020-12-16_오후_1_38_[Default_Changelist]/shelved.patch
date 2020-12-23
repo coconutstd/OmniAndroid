@@ -1,0 +1,100 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.example.omniandroid\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n    <user-permission android:name=\"android.permission.CAMERA\" />\r\n    <user-permission android:name=\"android.permission.RECORD_AUDIO\" />\r\n    <user-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\" />\r\n    <user-permission android:name=\"android.permission.VIDEO_CAPTURE\" />\r\n    <user-permission android:name=\"android.permission.AUDIO_CAPTURE\" />\r\n    <uses-feature android:name=\"android.hardware.camera\" />\r\n    <uses-feature android:name=\"android.hardware.camera.autofocus\" />\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n    <uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />\r\n    <uses-permission android:name=\"android.permission.WAKE_LOCK\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n<!--    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />-->\r\n<!--    <uses-feature android:name=\"android.hardware.camera2\" />-->\r\n<!--    <uses-feature android:name=\"android.hardware.camera\" />-->\r\n<!--    <uses-feature android:name=\"android.hardware.camera.autofocus\" />-->\r\n\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/AppTheme\"\r\n        android:usesCleartextTraffic=\"true\">\r\n        <activity android:name=\".MeetingActivity\"></activity>\r\n        <activity\r\n            android:name=\".AuthMainActivity\"\r\n            android:screenOrientation=\"portrait\"\r\n            android:theme=\"@style/AppTheme.NoActionBar\">\r\n\r\n            <!-- Add code here -->\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.VIEW\" />\r\n\r\n                <category android:name=\"android.intent.category.DEFAULT\" />\r\n                <category android:name=\"android.intent.category.BROWSABLE\" />\r\n\r\n                <data android:scheme=\"omniandroid\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".SignUpActivity\" />\r\n        <activity\r\n            android:name=\".LoginActivity\"\r\n            android:screenOrientation=\"portrait\"\r\n            android:theme=\"@style/AppTheme.NoActionBar\" />\r\n        <activity\r\n            android:name=\".SplashActivity\"\r\n            android:screenOrientation=\"portrait\"\r\n            android:theme=\"@style/AppTheme.NoActionBar\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".MainActivity\" />\r\n        <activity android:name=\".SettingActivity\" />\r\n        <activity android:name=\".WriteActivity\" />\r\n        <uses-library\r\n            android:name=\"org.apache.http.legacy\"\r\n            android:required=\"false\" />\r\n        <meta-data\r\n            android:name=\"com.google.android.geo.API_KEY\"\r\n            android:value=\"AIzaSyDXoq_vfnxthf-KpeGkyrGL3QjiwUjf-ro\"/>\r\n<!--        <service android:name=\"org.eclipse.paho.android.service.MqttService\" />-->\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 4c31ead05637b539a3741666b81bf9ad431ed3d5)
++++ app/src/main/AndroidManifest.xml	(date 1608012103453)
+@@ -6,19 +6,15 @@
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+-    <user-permission android:name="android.permission.CAMERA" />
+-    <user-permission android:name="android.permission.RECORD_AUDIO" />
+-    <user-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+-    <user-permission android:name="android.permission.VIDEO_CAPTURE" />
+-    <user-permission android:name="android.permission.AUDIO_CAPTURE" />
++    <uses-permission android:name="android.permission.CAMERA" />
++    <uses-permission android:name="android.permission.RECORD_AUDIO" />
++    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
++    <uses-permission android:name="android.permission.VIDEO_CAPTURE" />
++    <uses-permission android:name="android.permission.AUDIO_CAPTURE" />
+     <uses-feature android:name="android.hardware.camera" />
+     <uses-feature android:name="android.hardware.camera.autofocus" />
+-
+-    <uses-permission android:name="android.permission.INTERNET" />
+-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+     <uses-permission android:name="android.permission.WAKE_LOCK" />
+-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+ <!--    <uses-feature android:name="android.hardware.camera2" />-->
+ <!--    <uses-feature android:name="android.hardware.camera" />-->
+Index: app/src/main/java/com/example/omniandroid/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.omniandroid;\r\n\r\nimport android.Manifest;\r\nimport android.content.Intent;\r\nimport android.content.pm.PackageManager;\r\nimport android.os.Build;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.app.ActivityCompat;\r\nimport androidx.core.content.ContextCompat;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.amazonaws.mobile.client.AWSMobileClient;\r\nimport com.example.omniandroid.fragments.CalendarFragment;\r\nimport com.example.omniandroid.fragments.MainFragment;\r\nimport com.example.omniandroid.fragments.MonitoringFragment;\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\nimport org.eclipse.paho.client.mqttv3.MqttMessage;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    private static final int MY_PERMISSION_CAMERA = 1111;\r\n    private static final String TAG = \"tko-main\";\r\n    private RecyclerView recyclerView;\r\n    //private PostAdapter mAdapter;\r\n    BottomNavigationView bottomNavigationView;\r\n\r\n    MainFragment fragment1;\r\n    MonitoringFragment fragment2;\r\n    CalendarFragment fragment3;\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n\r\n        Button btnLogout = findViewById(R.id.btnLogout);\r\n\r\n        CommonAction.checkSession(this, false);\r\n        checkPermission();\r\n\r\n        bottomNavigationView = findViewById(R.id.bottomNavigationView);\r\n\r\n        Intent intent = getIntent();\r\n        String userId = intent.getStringExtra(\"user_id\");\r\n\r\n        //프래그먼트 생성\r\n        fragment1 = new MainFragment();\r\n        fragment2 = new MonitoringFragment();\r\n        fragment3 = new CalendarFragment();\r\n\r\n        Bundle bundle = new Bundle();\r\n        bundle.putString(\"user_Id\", \"user_id\");\r\n        fragment3.setArguments(bundle);\r\n\r\n        //처음 띄워줄 뷰\r\n        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();\r\n\r\n        //아이콘 선택했을 때 원하는 프래그먼트 띄워지도록 리스너\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n               switch (item.getItemId()) {\r\n                   case R.id.tab1:{\r\n                       getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();\r\n                       return true;\r\n                   }\r\n                   case R.id.tab2:{\r\n                       getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2).commitAllowingStateLoss();\r\n                       return true;\r\n                   }\r\n                   case R.id.tab3:{\r\n                       getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment3).commitAllowingStateLoss();\r\n                       return true;\r\n                   }\r\n\r\n                   default:return false;\r\n               }\r\n            }\r\n        });\r\n\r\n        btnLogout.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                AWSMobileClient.getInstance().signOut();\r\n                CommonAction.openAuthMain(com.example.omniandroid.MainActivity.this);\r\n            }\r\n        });\r\n    }\r\n\r\n    private void checkPermission(){\r\n        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {\r\n            if ((ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE))) {\r\n                Log.e(TAG, \"permission error - \");\r\n            } else {\r\n                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, MY_PERMISSION_CAMERA);\r\n            }\r\n        }\r\n        if (Build.VERSION.SDK_INT >= 23) {\r\n            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 1);\r\n        }\r\n    }\r\n\r\n    protected void onResume() {\r\n        super.onResume();\r\n    }\r\n    @Override\r\n    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\r\n        switch (requestCode) {\r\n            case MY_PERMISSION_CAMERA:\r\n                for (int i = 0; i < grantResults.length; i++) {\r\n                    if (grantResults[i] < 0) {\r\n                        return;\r\n                    }\r\n                }\r\n                break;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/omniandroid/MainActivity.java	(revision 4c31ead05637b539a3741666b81bf9ad431ed3d5)
++++ app/src/main/java/com/example/omniandroid/MainActivity.java	(date 1608012302109)
+@@ -22,8 +22,6 @@
+ import com.example.omniandroid.fragments.MonitoringFragment;
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+ 
+-import org.eclipse.paho.client.mqttv3.MqttMessage;
+-
+ public class MainActivity extends AppCompatActivity {
+ 
+     private static final int MY_PERMISSION_CAMERA = 1111;
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_2020-12-08_오후_3_38_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_2020-12-08_오후_3_38_[Default_Changelist]/shelved.patch	(revision 4c31ead05637b539a3741666b81bf9ad431ed3d5)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_2020-12-08_오후_3_38_[Default_Changelist]/shelved.patch	(revision 4c31ead05637b539a3741666b81bf9ad431ed3d5)
+@@ -1,16 +0,0 @@
+-Index: .idea/gradle.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"PLATFORM\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"1.8\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n        <option name=\"useQualifiedModuleNames\" value=\"true\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- .idea/gradle.xml	(revision 1787d77ad76091c7e1ef792a9ae5bc3021542b15)
+-+++ .idea/gradle.xml	(date 1607145147862)
+-@@ -1,5 +1,6 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-+  <component name="GradleMigrationSettings" migrationVersion="1" />
+-   <component name="GradleSettings">
+-     <option name="linkedExternalProjectsSettings">
+-       <GradleProjectSettings>
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_2020-12-08__3_38__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_2020-12-08__3_38__Default_Changelist_.xml	(revision 4c31ead05637b539a3741666b81bf9ad431ed3d5)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_2020-12-08__3_38__Default_Changelist_.xml	(revision 4c31ead05637b539a3741666b81bf9ad431ed3d5)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_2020-12-08_오후_3_38_[Default_Changelist]" date="1607409530031" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-12-08_오후_3_38_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020-12-08 오후 3:38 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\nbuildscript {\r\n    ext.kotlin_version = \"1.4.20\"\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n    dependencies {\r\n        classpath \"com.android.tools.build:gradle:4.1.1\"\r\n        classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n        // Add this line into `dependencies` in `buildscript`\r\n        classpath 'com.amplifyframework:amplify-tools-gradle-plugin:1.0.2'\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        maven {url 'https://jitpack.io'}\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}\r\n\r\n// Add this line at the end of the file\r\n//apply plugin: 'com.amplifyframework.amplifytools'
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 4c31ead05637b539a3741666b81bf9ad431ed3d5)
++++ build.gradle	(date 1607993884616)
+@@ -26,6 +26,3 @@
+ task clean(type: Delete) {
+     delete rootProject.buildDir
+ }
+-
+-// Add this line at the end of the file
+-//apply plugin: 'com.amplifyframework.amplifytools'
+\ No newline at end of file

@@ -41,12 +41,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "sensorTest",
+            "sensorValue",
             {
               "Fn::Join": [
                 "",
                 [
-                  "sensorTest",
+                  "sensorValue",
                   "-",
                   {
                     "Ref": "env"
@@ -77,7 +77,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-omniandroid-dev-141652-deployment",
-          "S3Key": "amplify-builds/sensorTest-76793472794c4e6d4f5a-build.zip"
+          "S3Key": "amplify-builds/sensorValue-55424d4f6e364d63492f-build.zip"
         }
       }
     },
@@ -87,12 +87,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "omniandroidLambdaRolef3b5012f",
+            "omniandroidLambdaRole93b06126",
             {
               "Fn::Join": [
                 "",
                 [
-                  "omniandroidLambdaRolef3b5012f",
+                  "omniandroidLambdaRole93b06126",
                   "-",
                   {
                     "Ref": "env"

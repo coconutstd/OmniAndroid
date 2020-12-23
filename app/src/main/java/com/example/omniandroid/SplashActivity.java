@@ -16,6 +16,8 @@ public class SplashActivity extends AppCompatActivity {
     private final static String TAG = com.example.omniandroid.SplashActivity.class.getSimpleName();
 
     private Context context;
+    private static String userId;
+    private static int identityCheckedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +37,11 @@ public class SplashActivity extends AppCompatActivity {
                 public void onResult(UserStateDetails userStateDetails) {
                     switch (userStateDetails.getUserState()){
                         case SIGNED_IN:
-                            CommonAction.openMain(context);
+                            CommonAction.openMain(context, userId, identityCheckedId);
                             break;
                         case SIGNED_OUT:
                             Log.d(TAG, "Do nothing yet");
-                            CommonAction.openAuthMain(context);
+                            CommonAction.openAuthMain(context, userId, identityCheckedId);
                             break;
                         default:
                             AWSMobileClient.getInstance().signOut();
@@ -52,9 +54,9 @@ public class SplashActivity extends AppCompatActivity {
                 }
             });
         } else if (AWSMobileClient.getInstance().isSignedIn()){
-            CommonAction.openMain(context);
+            CommonAction.openMain(context, userId, identityCheckedId);
         } else {
-            CommonAction.openAuthMain(context);
+            CommonAction.openAuthMain(context, userId, identityCheckedId);
         }
     }
 

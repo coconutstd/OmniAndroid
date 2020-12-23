@@ -3,26 +3,35 @@ package com.example.omniandroid;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.UserStateDetails;
 import com.amazonaws.mobile.client.UserStateListener;
 
 public class CommonAction {
-    public static void openMain(Context context){
-        com.example.omniandroid.CommonAction.openActivityOnTop(context, com.example.omniandroid.MainActivity.class);
+    private static String userId_;
+    private static int identityCheckedId_;
+
+    public static void openMain(Context context, String userId, int identityCheckedId){
+        com.example.omniandroid.CommonAction.openActivityOnTop(context, com.example.omniandroid.MainActivity.class, userId, identityCheckedId);
     }
 
-    public static void openAuthMain(Context context){
-        com.example.omniandroid.CommonAction.openActivityOnTop(context, com.example.omniandroid.AuthMainActivity.class);
+    public static void openAuthMain(Context context, String userId, int identityCheckedId){
+        com.example.omniandroid.CommonAction.openActivityOnTop(context, com.example.omniandroid.AuthMainActivity.class, userId, identityCheckedId);
     }
 
-    public static void openSplash(Context context){
-        com.example.omniandroid.CommonAction.openActivityOnTop(context, com.example.omniandroid.SplashActivity.class);
+    public static void openSplash(Context context, String userId, int identityCheckedId){
+        com.example.omniandroid.CommonAction.openActivityOnTop(context, com.example.omniandroid.SplashActivity.class, userId, identityCheckedId);
     }
 
-    public static void openActivityOnTop(Context context, Class targetClass) {
+    public static void openActivityOnTop(Context context, Class targetClass, String userId, int identityCheckedId) {
+        userId_ = userId;
+        identityCheckedId_ = identityCheckedId;
+
         Intent intent=new Intent(context, targetClass);
+        intent.putExtra("user_id", userId);
+        intent.putExtra("checkedId", identityCheckedId);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
@@ -36,11 +45,11 @@ public class CommonAction {
                     case SIGNED_IN:
                         Log.i("checkSession", "user signed in");
                         if (moveToMain)
-                            com.example.omniandroid.CommonAction.openMain(context);
+                            com.example.omniandroid.CommonAction.openMain(context, userId_, identityCheckedId_);
                         break;
                     default:
                         Log.i("checkSession", "unsupported");
-                        com.example.omniandroid.CommonAction.openSplash(context);
+                        com.example.omniandroid.CommonAction.openSplash(context, userId_, identityCheckedId_);
                         break;
                 }
             }

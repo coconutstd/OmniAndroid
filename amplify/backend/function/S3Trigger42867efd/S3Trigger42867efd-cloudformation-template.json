@@ -1,22 +1,9 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "Lambda resource stack creation using Amplify CLI",
   "Parameters": {
-    "CloudWatchRule": {
-      "Type": "String",
-      "Default": "NONE",
-      "Description": " Schedule Expression"
-    },
     "env": {
       "Type": "String"
-    },
-    "storagesensorTestName": {
-      "Type": "String",
-      "Default": "storagesensorTestName"
-    },
-    "storagesensorTestArn": {
-      "Type": "String",
-      "Default": "storagesensorTestArn"
     }
   },
   "Conditions": {
@@ -41,12 +28,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "sensorTest",
+            "S3Trigger42867efd",
             {
               "Fn::Join": [
                 "",
                 [
-                  "sensorTest",
+                  "S3Trigger42867efd",
                   "-",
                   {
                     "Ref": "env"
@@ -60,9 +47,6 @@
           "Variables": {
             "ENV": {
               "Ref": "env"
-            },
-            "REGION": {
-              "Ref": "AWS::Region"
             }
           }
         },
@@ -72,12 +56,11 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs12.x",
-        "Layers": [],
+        "Runtime": "nodejs10.x",
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-omniandroid-dev-141652-deployment",
-          "S3Key": "amplify-builds/sensorTest-76793472794c4e6d4f5a-build.zip"
+          "S3Key": "amplify-builds/S3Trigger42867efd-5736646f624a77386c72-build.zip"
         }
       }
     },
@@ -87,12 +70,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "omniandroidLambdaRolef3b5012f",
+            "S3Trigger42867efdLambdaRole42867efd",
             {
               "Fn::Join": [
                 "",
                 [
-                  "omniandroidLambdaRolef3b5012f",
+                  "S3Trigger42867efdLambdaRole42867efd",
                   "-",
                   {
                     "Ref": "env"
@@ -158,34 +141,6 @@
                   }
                 ]
               }
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:DescribeTable",
-                "dynamodb:GetItem",
-                "dynamodb:Query",
-                "dynamodb:Scan",
-                "dynamodb:PutItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:DeleteItem"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagesensorTestArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagesensorTestArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
             }
           ]
         }

@@ -25,7 +25,7 @@ const partitionKeyType = "S";
 const sortKeyName = "";
 const sortKeyType = "";
 const hasSortKey = sortKeyName !== "";
-const path = "/sensor";
+const path = "/value";
 const UNAUTH = 'UNAUTH';
 const hashKeyPath = '/:' + partitionKeyName;
 const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
@@ -51,6 +51,12 @@ const convertUrlType = (param, type) => {
   }
 }
 
+const enumValues = {
+    1 : "humi",
+    2 : "temp",
+    3 : "emf"
+}
+
 /********************************
  * HTTP Get method for list objects *
  ********************************/
@@ -58,7 +64,10 @@ const convertUrlType = (param, type) => {
 app.get(path, function(request, response) {
   let params = {
     TableName: tableName,
-    limit: 100
+    ProjectionExpression : "humi, #temp, emf",
+    ExpressionAttributeNames: {
+                "#temp" : "temp"
+    }
   }
   dynamodb.scan(params, (error, result) => {
     if (error) {
@@ -72,20 +81,19 @@ app.get(path, function(request, response) {
 app.get(path+"/:id", function(request, response) {
     let params = {
         TableName: tableName,
-        IndexName: "userId-createdAt-index",
-        ScanIndexForward: false,
-        KeyConditionExpression: "#userId = :userId",
-        FilterExpression: "#sort = :sort",
+        IndexName: "sort-createdAt-index",
+        ProjectionExpression : `#${enumValues[request.params.id]}`,
+        KeyConditionExpression: "#sort = :sort",
+        ScanIndexForward : false,
         ExpressionAttributeNames: {
-            "#userId": "userId",
-            "#sort": "sort"
+            "#sort" : "sort",
+            [`#${enumValues[request.params.id]}`] : enumValues[request.params.id]
         },
         ExpressionAttributeValues: {
-            ":userId": "hyeju",
-            ":sort": request.params.id
+            ":sort" : request.params.id
         },
-        Limit: 5
-    }
+        Limit: 1
+     }
 
     dynamodb.query(params, (error, result) => {
         if (error) {
